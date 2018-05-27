@@ -13,6 +13,10 @@ def main():
     act.init()
     act.driveOutStartBox()
     u.DEBUG()
+    act.driveFirstThreeTrees()
+    act.driveToNextTrees()
+    act.driveFinalThreeTrees()
+    u.DEBUG()
 
 if __name__ == "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)

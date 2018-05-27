@@ -34,7 +34,8 @@ WHEEL_DISTANCE = 5.25 #205 - 4.25  # Distance between the two wheels
 lAdjust = 1.00 # adjust left wheel counter to fix drift
 
 if isClone:
-    INCHES_TO_TICKS = 227
+    INCHES_TO_TICKS = 182
+    lAdjust= 0.98
 
 
 # Motor Control #
