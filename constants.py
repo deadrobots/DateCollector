@@ -11,12 +11,11 @@ RMOTOR = 0
 CLONE_SWITCH = 9
 RIGHT_BUTTON = 13
 
-#isClone = w.digital(CLONE_SWITCH)
-isClone = True
+isClone = w.digital(CLONE_SWITCH)
 
 # Servos
 servoArmBin = 0
-servoArmPoms = 1
+servoSlider = 1
 servoClawPoms = 2
 
 #camera channels
@@ -37,7 +36,8 @@ onBlack = 3000
 # Servo Positions
 armUp = 100
 armDown = 970
-pomArmOut = 2000
-pomArmBack = 900
-pomClawClosed = 1100
-pomClawOpen = 0
+sliderOut = 1100
+sliderBack = 1900
+clawClosed = 0
+clawCollect = 0
+clawOpen = 1270

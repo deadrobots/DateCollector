@@ -9,11 +9,11 @@ import drive as d
 import motorsPlusPlus as mpp
 
 def main():
-    print ("Running")
+    print ("Running the code")
     act.init()
     act.driveOutStartBox()
-    u.DEBUG()
     act.driveFirstThreeTrees()
+    u.DEBUG()
     act.driveToNextTrees()
     act.driveFinalThreeTrees()
     u.DEBUG()
