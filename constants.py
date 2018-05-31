@@ -11,6 +11,9 @@ RMOTOR = 0
 CLONE_SWITCH = 9
 RIGHT_BUTTON = 13
 
+#Analog Ports
+ET = 0
+
 isClone = w.digital(CLONE_SWITCH)
 
 # Servos
@@ -41,3 +44,6 @@ sliderBack = 1900
 clawClosed = 0
 clawCollect = 0
 clawOpen = 1270
+
+#ET
+onTree = 1800

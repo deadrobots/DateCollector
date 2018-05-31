@@ -33,18 +33,26 @@ def startTest():
     u.move_servo(c.servoClawPoms, c.clawClosed)
 
 def driveOutStartBox():
-    '''if (c.isClone):#drives out of start box to pom
-        mpp.drive_speed(3, 50)
-        mpp.rotate(-75, 20)
-        mpp.drive_timed(-60, -43, 10)
-        #mpp.rotate(80, 50)
-    else:'''
-    mpp.drive_speed(3.5, 80)  # 9.4
-    mpp.rotate(-95, 50)
-    u.move_servo(c.servoArmBin, c.armUp)
-    mpp.drive_speed(-20.75, 80)
-    #u.move_servo(c.servoClawPoms, c.clawOpen)
-    mpp.rotate(80, 50)
+    if (c.isClone):#drives out of start box to pom
+        mpp.drive_speed(4, 80)
+        mpp.rotate(-91, 50)
+        u.move_servo(c.servoArmBin, c.armUp)
+        mpp.drive_speed(-26.1, 80)
+        mpp.rotate(80, 50)
+    else:
+        mpp.drive_speed(3.5, 80)  # 9.4
+        mpp.rotate(-95, 50)
+        u.move_servo(c.servoArmBin, c.armUp)
+        mpp.drive_speed(-20.75, 80)
+        #u.move_servo(c.servoClawPoms, c.clawOpen)
+        mpp.rotate(80, 50)
+
+def driveUntilTree():
+    print("Looking for Trees")
+    while analog(c.ET) < c.onTree:
+        mpp.drive_timed(50, 50, 0.01)
+        print(analog(c.ET))
+    print("Saw Tree")
 
 def collectPoms():
     #extends arm then collects poms
@@ -55,18 +63,25 @@ def collectPoms():
 
 def driveFirstThreeTrees():
     print("Driving to First Trees")
-    mpp.drive_speed(-5.5, 30)
-    mpp.drive_speed(.50, 40)
-    u.move_servo(c.servoArmBin, c.armDown)
-    collectPoms()
-    msleep(500)
-    u.DEBUG()
-    mpp.drive_speed(13.5, 50)
-    collectPoms()
-    msleep(500)
-    mpp.drive_speed(13.5, 50)
-    collectPoms()
-    msleep(500)
+    if (c.isClone):
+        mpp.drive_speed(-7, 40)
+        u.move_servo(c.servoArmBin, c.armDown)
+        msleep(1000)
+        mpp.drive_speed(7, 50)
+        driveUntilTree()
+    else:
+        mpp.drive_speed(-5.5, 30)
+        mpp.drive_speed(.50, 40)
+        u.move_servo(c.servoArmBin, c.armDown)
+        collectPoms()
+        msleep(500)
+        u.DEBUG()
+        mpp.drive_speed(13.5, 50)
+        collectPoms()
+        msleep(500)
+        mpp.drive_speed(13.5, 50)
+        collectPoms()
+        msleep(500)
 
 def driveToNextTrees():
     u.move_servo(c.servoArmBin, c.armUp, 25)

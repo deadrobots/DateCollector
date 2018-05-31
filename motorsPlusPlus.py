@@ -32,10 +32,13 @@ WHEEL_DISTANCE = 5.25 #205 - 4.25  # Distance between the two wheels
 #was 5.00
 
 lAdjust = 1.00 # adjust left wheel counter to fix drift
+lAdjustForward = 1.00
+lAdjustBack = 1.00
 
 if isClone:
-    INCHES_TO_TICKS = 181
-    lAdjust= 0.99
+    INCHES_TO_TICKS = 185
+    lAdjustForward = 0.98
+    lAdjustBack = 0.90
 
 
 # Motor Control #
@@ -119,8 +122,13 @@ def arc_radius(angle, turnRadius, speed):  # Turns the robot "angle" degrees by 
 
 def drive_speed(inches, speed):  # Drives an exact distance in inches.
     print ("driving exact distance")
+    global lAdjust
     if inches < 0:
         speed = -speed
+    if speed < 0:
+        lAdjust = lAdjustBack
+    else:
+        lAdjust = lAdjustForward
     _clear_ticks()
     ticks = abs(INCHES_TO_TICKS * inches)
     while _right_ticks() <= ticks:
