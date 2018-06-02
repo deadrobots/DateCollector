@@ -6,6 +6,7 @@ startTime = -1
 # Motor ports
 LMOTOR = 3
 RMOTOR = 0
+DATEMOTOR = 1
 
 # Digital ports
 CLONE_SWITCH = 9
@@ -37,10 +38,12 @@ FRONT_TOPHAT = 0
 onBlack = 3000
 
 # Servo Positions
-armUp = 100
+armUp = 530
 armDown = 970
+
 sliderOut = 1100
 sliderBack = 1900
+
 clawClosed = 0
 clawCollect = 0
 clawOpen = 1270

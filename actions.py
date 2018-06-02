@@ -66,6 +66,9 @@ def driveFirstThreeTrees():
     if (c.isClone):
         mpp.drive_speed(-7, 40)
         u.move_servo(c.servoArmBin, c.armDown)
+        msleep(500)
+        mpp.drive_timed(70, 75, .5)
+        mpp.drive_date_motor(-50, 1000)
         msleep(1000)
         mpp.drive_speed(7, 50)
         driveUntilTree()

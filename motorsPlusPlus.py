@@ -24,6 +24,8 @@ from wallaby import motor
 from wallaby import msleep
 from wallaby import seconds
 from wallaby import set_servo_position
+import constants as c
+
 
 # Drive Constants
 INCHES_TO_TICKS = 215 #169   #205 - 161     #156#127#50 cm #265
@@ -37,8 +39,8 @@ lAdjustBack = 1.00
 
 if isClone:
     INCHES_TO_TICKS = 185
-    lAdjustForward = 0.98
-    lAdjustBack = 0.90
+    lAdjustForward = 0.98 #Higher number makes robot go right.
+    lAdjustBack = 0.90 #Higher number makes robot go BACKWARDS and left.
 
 
 # Motor Control #
@@ -242,3 +244,8 @@ def pivot_left(deg, speed):  # Pivots by moving the left wheel.
     while _left_ticks() <= ticks:
         pass
     freeze_motors()
+
+
+def drive_date_motor(speed, time):
+    motor(c.DATEMOTOR, speed)
+    msleep(time)
