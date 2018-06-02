@@ -35,10 +35,10 @@ def startTest():
 def driveOutStartBox():
     if (c.isClone):#drives out of start box to pom
         mpp.drive_speed(4, 80)
-        mpp.rotate(-91, 50)
+        mpp.rotate(-89, 50)
         u.move_servo(c.servoArmBin, c.armUp)
-        mpp.drive_speed(-26.1, 80)
-        mpp.rotate(80, 50)
+        mpp.drive_speed(-29, 80)
+        mpp.rotate(85, 50)
     else:
         mpp.drive_speed(3.5, 80)  # 9.4
         mpp.rotate(-95, 50)
@@ -46,6 +46,7 @@ def driveOutStartBox():
         mpp.drive_speed(-20.75, 80)
         #u.move_servo(c.servoClawPoms, c.clawOpen)
         mpp.rotate(80, 50)
+    msleep(1000)
 
 def driveUntilTree():
     print("Looking for Trees")
@@ -65,8 +66,12 @@ def driveFirstThreeTrees():
     print("Driving to First Trees")
     if (c.isClone):
         mpp.drive_speed(-7, 40)
+        mpp.drive_speed(1.5, 40)
+        mpp.drive_timed(-60,-30,2)
         u.move_servo(c.servoArmBin, c.armDown)
         msleep(500)
+
+        u.DEBUG()
         mpp.drive_timed(70, 75, .5)
         mpp.drive_date_motor(-50, 1000)
         msleep(1000)

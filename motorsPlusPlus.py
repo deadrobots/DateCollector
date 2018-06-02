@@ -38,9 +38,9 @@ lAdjustForward = 1.00
 lAdjustBack = 1.00
 
 if isClone:
-    INCHES_TO_TICKS = 185
-    lAdjustForward = 0.98 #Higher number makes robot go right.
-    lAdjustBack = 0.90 #Higher number makes robot go BACKWARDS and left.
+    INCHES_TO_TICKS = 220
+    lAdjustForward = 1.14 #Higher number makes robot go right.
+    lAdjustBack = 1.1 #Higher number makes robot go BACKWARDS and left.
 
 
 # Motor Control #
