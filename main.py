@@ -13,8 +13,8 @@ def main():
     act.init()
     act.driveOutStartBox()
     act.driveFirstThreeTrees()
-    u.DEBUG()
     act.driveToNextTrees()
+    u.DEBUG()
     act.driveFinalThreeTrees()
 
 if __name__ == "__main__":

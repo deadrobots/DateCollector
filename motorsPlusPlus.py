@@ -151,6 +151,7 @@ def drive_timed(lmotor, rmotor, time):
     end = seconds() + time
     if lmotor == 0 or rmotor == 0:
         print ("please use pivot instead!")
+        exit()
 
     elif abs(rmotor) <= abs(lmotor):
         mod = rmotor / (lmotor * 1.0)
@@ -245,7 +246,7 @@ def pivot_left(deg, speed):  # Pivots by moving the left wheel.
         pass
     freeze_motors()
 
-
 def drive_date_motor(speed, time):
     motor(c.DATEMOTOR, speed)
     msleep(time)
+    motor(c.DATEMOTOR, 0)

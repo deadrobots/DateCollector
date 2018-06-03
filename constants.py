@@ -39,7 +39,7 @@ onBlack = 3000
 
 # Servo Positions
 armUp = 530
-armDown = 970
+armDown = 1100
 
 sliderOut = 1100
 sliderBack = 1900
