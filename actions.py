@@ -13,12 +13,19 @@ def init():
     #For a more exact placement, the left wheel should be 4.75 inches from the black tape
     #starting positions
     if(c.isClone):
-        print("IS CLONE")
+        print("IS BLUE")
     else:
-        print("IS PRIME")
+        print("IS GREEN")
     enable_servos()
     startTest()
     #msleep(500)
+    u.waitForButton()
+
+def calibrate_drive ():
+    print("calibateing")
+    mpp.drive_speed(24, 80)
+    u.waitForButton()
+    mpp.drive_speed(24, -80)
     u.waitForButton()
 
 def startTest():
@@ -36,10 +43,10 @@ def startTest():
 def driveOutStartBox():
     if (c.isClone):
         #drives out of start box to pom
-        #mpp.drive_speed(4, 80)
-        #mpp.rotate(-91, 50)
+        mpp.drive_speed(4, 80)
+        mpp.rotate(-85, 50)
         u.move_servo(c.servoArmBin, c.armUp)
-        mpp.drive_speed(-28.4, 80)
+        mpp.drive_speed(-27, 80)
         mpp.rotate(62, 50)
         msleep(500)
     else:
@@ -59,7 +66,11 @@ def driveUntilTree():
         mpp.drive_timed(50, 50, 0.01)
         print(analog(c.ET))
     print("Saw Tree")
-    mpp.drive_timed(5, 40, 1.5)
+    u.waitForButton()
+    mpp.drive_speed( 2, 50)
+   # mpp.drive_timed(5, 40, 1.5)
+    mpp.pivot_right(10,25)
+    u.waitForButton()
 
 def collectPoms():
     #extends arm then collects poms
@@ -77,14 +88,14 @@ def driveFirstThreeTrees():
         #mpp.drive_timed(-60, -30, 2)
         u.move_servo(c.servoArmBin, c.armDown)
         msleep(500)
-        #mpp.drive_timed(70, 75, .5)
-        mpp.drive_date_motor(50, 6000)
+        mpp.drive_speed(1.5, 50)
+        mpp.get_poms_timed(50, 7000)
         msleep(1000)
         driveUntilTree()
-        mpp.drive_date_motor(50, 6000)
+        mpp.get_poms_timed(50, 7000)
         msleep(1000)
         driveUntilTree()
-        mpp.drive_date_motor(50, 6000)
+        mpp.get_poms_timed(50, 7000)
         msleep(1000)
     else:
         mpp.drive_speed(-5.5, 30)

@@ -38,8 +38,8 @@ lAdjustForward = 1.00
 lAdjustBack = 1.00
 
 if isClone:
-    INCHES_TO_TICKS = 220
-    lAdjustForward = 1.14 #Higher number makes robot go right.
+    INCHES_TO_TICKS = 225
+    lAdjustForward = 1.16 #Higher number makes robot go right.
     lAdjustBack = 1.1 #Higher number makes robot go BACKWARDS and left.
 
 
@@ -250,3 +250,12 @@ def drive_date_motor(speed, time):
     motor(c.DATEMOTOR, speed)
     msleep(time)
     motor(c.DATEMOTOR, 0)
+
+def get_poms_timed (speed, time):
+    motor(c.DATEMOTOR, speed)
+    motor(c.LMOTOR, -10)
+    motor(c.RMOTOR, 10)
+    msleep(time)
+    motor(c.DATEMOTOR, 0)
+    motor(c.LMOTOR, 0)
+    motor(c.RMOTOR, 0)
