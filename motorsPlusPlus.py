@@ -34,14 +34,14 @@ WHEEL_DISTANCE = 5.25 #205 - 4.25  # Distance between the two wheels
 #was 5.00
 
 lAdjust = 1.00 # adjust left wheel counter to fix drift
-lAdjustForward = 1.00
+lAdjustForward = 1.025
 lAdjustBack = 1.00
 
 if isClone:
     INCHES_TO_TICKS = 225
-    lAdjustForward = 1.16 #Higher number makes robot go right.
-    lAdjustBack = 1.1 #Higher number makes robot go BACKWARDS and left.
-
+    lAdjustForward = 1.08 #Higher number makes robot go left.
+    lAdjustBack = 1.05 #Higher number makes robot go BACKWARDS and left.
+#1.08
 
 # Motor Control #
 
@@ -253,8 +253,11 @@ def drive_date_motor(speed, time):
 
 def get_poms_timed (speed, time):
     motor(c.DATEMOTOR, speed)
-    motor(c.LMOTOR, -10)
-    motor(c.RMOTOR, 10)
+    if (c.isClone):
+        motor(c.LMOTOR, -10)
+        motor(c.RMOTOR, 10)
+    else:
+        pass
     msleep(time)
     motor(c.DATEMOTOR, 0)
     motor(c.LMOTOR, 0)
