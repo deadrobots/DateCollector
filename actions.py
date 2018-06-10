@@ -12,7 +12,7 @@ def init():
     #If you cant see the lines, the bot should be flush to the wall parallel to the tram
     #For a more exact placement, the left wheel should be 4.75 inches from the black tape
     #starting positions
-    if(c.isClone):
+    if(c.isBlue):
         print("IS BLUE")
     else:
         print("IS GREEN")
@@ -23,7 +23,7 @@ def init():
 
 def calibrate_drive ():
     print("calibrating")
-    if (c.isClone):
+    if(c.isBlue):
         print("IS BLUE")
     else:
         print("IS GREEN")
@@ -45,7 +45,7 @@ def startTest():
     mpp.drive_date_motor(50, 1000)
 
 def driveOutStartBox():
-    if (c.isClone):
+    if (c.isBlue):
         #drives out of start box to pom
         mpp.drive_speed(4, 80)
         mpp.rotate(-85, 50)
@@ -55,16 +55,16 @@ def driveOutStartBox():
         msleep(500)
     else:
         mpp.drive_speed(3.5, 80)  # 9.4
-        mpp.rotate(-90, 50)#-90
+        mpp.rotate(-92, 50)#-90
         u.move_servo(c.servoArmBin, c.armUp)
-        mpp.drive_speed(-27, 80)#-20.75
+        mpp.drive_speed(-27.6, 80)#-20.75
         #u.move_servo(c.servoClawPoms, c.clawOpen)
-        mpp.rotate(66, 50)
+        mpp.rotate(58, 50) #was 66
         msleep(1000)
 
 def driveUntilTree():
     print("Looking for Trees")
-    if (c.isClone):
+    if (c.isBlue):
         mpp.drive_speed(10, 50)
         mpp.rotate(-10, 30)
         while analog(c.ET) < c.onTree:
@@ -83,12 +83,12 @@ def driveUntilTree():
             mpp.drive_timed(50, 50, 0.01)
             print(analog(c.ET))
         print("Saw Tree")
-        mpp.drive_speed(2, 50)
+        #mpp.drive_speed(2, 50)
         #u.waitForButton()
 
 def driveFirstThreeTrees():
     print("Driving to First Trees")
-    if c.isClone:
+    if c.isBlue:
         #mpp.drive_speed(-7, 40)
         mpp.drive_speed(-8, 50)
         #mpp.drive_speed(1.5, 40)
@@ -108,12 +108,15 @@ def driveFirstThreeTrees():
         mpp.drive_speed(-6, 50)
         u.move_servo(c.servoArmBin, c.armDown)
         #mpp.drive_timed(20, 80, 1)
-        mpp.pivot_right(10, 25)
-        mpp.drive_speed(1, 20)
+        #mpp.pivot_right(10, 25)
+        mpp.drive_speed(0.3, 20) #was 1 inch
         msleep(250)
+        u.waitForButton()
         mpp.get_poms_timed(50, 7000)
         msleep(1000)
+        u.waitForButton()
         driveUntilTree()
+        u.waitForButton()
         mpp.get_poms_timed(50, 7000)
         msleep(1000)
         driveUntilTree()

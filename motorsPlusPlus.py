@@ -9,7 +9,7 @@ It requires boolean "isClone", integer "LMOTOR", and integer "RMOTOR" from a "co
 These values refer to prime/clone status, the left motor's port, and the right motor's port respectively.
 '''
 
-from constants import isClone
+from constants import isBlue
 from constants import LMOTOR
 from constants import RMOTOR
 
@@ -37,7 +37,7 @@ lAdjust = 1.00 # adjust left wheel counter to fix drift
 lAdjustForward = 1.025
 lAdjustBack = 1.00
 
-if isClone:
+if isBlue:
     INCHES_TO_TICKS = 225
     lAdjustForward = 1.08 #Higher number makes robot go left.
     lAdjustBack = 1.05 #Higher number makes robot go BACKWARDS and left.
@@ -253,7 +253,7 @@ def drive_date_motor(speed, time):
 
 def get_poms_timed (speed, time):
     motor(c.DATEMOTOR, speed)
-    if (c.isClone):
+    if (c.isBlue):
         motor(c.LMOTOR, -10)
         motor(c.RMOTOR, 10)
     else:

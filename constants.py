@@ -15,7 +15,7 @@ RIGHT_BUTTON = 13
 #Analog Ports
 ET = 0
 
-isClone = w.digital(CLONE_SWITCH)
+isBlue = w.digital(CLONE_SWITCH)
 
 # Servos
 servoArmBin = 0
