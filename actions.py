@@ -59,7 +59,10 @@ def driveOutStartBox():
         u.move_servo(c.servoArmBin, c.armUp)
         mpp.drive_speed(-27.6, 80)#-20.75
         #u.move_servo(c.servoClawPoms, c.clawOpen)
-        mpp.rotate(58, 50) #was 66
+        mpp.rotate(90, 50) #was 66 #was 58
+        mpp.drive_speed(-5, 40)
+        mpp.drive_speed(3, 40)
+        mpp.rotate(-30, 50)
         msleep(1000)
 
 def driveUntilTree():
@@ -77,12 +80,15 @@ def driveUntilTree():
         mpp.pivot_right(10, 25)
         u.waitForButton()
     else:
-        mpp.pivot_right(-8, 25)
+        mpp.pivot_right(-5, 25)#-8
         mpp.drive_speed(10, 50)
         while analog(c.ET) < c.onTree:
             mpp.drive_timed(50, 50, 0.01)
             print(analog(c.ET))
         print("Saw Tree")
+        mpp.pivot_right(8, 25)#10
+        mpp.drive_speed(.3, 50)
+        # mpp.drive_timed(5, 40, 1.5)
         #mpp.drive_speed(2, 50)
         #u.waitForButton()
 
@@ -105,18 +111,18 @@ def driveFirstThreeTrees():
         mpp.get_poms_timed(50, 7000)
         msleep(1000)
     else:
-        mpp.drive_speed(-6, 50)
+        mpp.drive_speed(-7, 50) #was -6
         u.move_servo(c.servoArmBin, c.armDown)
         #mpp.drive_timed(20, 80, 1)
         #mpp.pivot_right(10, 25)
-        mpp.drive_speed(0.3, 20) #was 1 inch
+        mpp.drive_speed(.6, 20) #was 1 inch #was .3
         msleep(250)
-        u.waitForButton()
+        #u.waitForButton()
         mpp.get_poms_timed(50, 7000)
         msleep(1000)
-        u.waitForButton()
+        #u.waitForButton()
         driveUntilTree()
-        u.waitForButton()
+        #u.waitForButton()
         mpp.get_poms_timed(50, 7000)
         msleep(1000)
         driveUntilTree()
