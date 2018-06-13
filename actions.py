@@ -55,9 +55,9 @@ def driveOutStartBox():
         msleep(500)
     else:
         mpp.drive_speed(3.5, 80)  # 9.4
-        mpp.rotate(-92, 50)#-90
+        mpp.rotate(-87, 50)#-90
         u.move_servo(c.servoArmBin, c.armUp)
-        mpp.drive_speed(-27.6, 80)#-20.75
+        mpp.drive_speed(-27, 80)#-20.75
         #u.move_servo(c.servoClawPoms, c.clawOpen)
         mpp.rotate(90, 50) #was 66 #was 58
         mpp.drive_speed(-5, 40)
@@ -80,13 +80,14 @@ def driveUntilTree():
         mpp.pivot_right(10, 25)
         u.waitForButton()
     else:
-        mpp.pivot_right(-5, 25)#-8
-        mpp.drive_speed(10, 50)
+        mpp.pivot_right(-8, 25)#-8
+        mpp.drive_speed(6, 50)
+        mpp.pivot_right(4, 25)
         while analog(c.ET) < c.onTree:
             mpp.drive_timed(50, 50, 0.01)
             print(analog(c.ET))
         print("Saw Tree")
-        mpp.pivot_right(8, 25)#10
+        mpp.pivot_right(9, 25)#10
         mpp.drive_speed(.3, 50)
         # mpp.drive_timed(5, 40, 1.5)
         #mpp.drive_speed(2, 50)
@@ -96,7 +97,7 @@ def driveFirstThreeTrees():
     print("Driving to First Trees")
     if c.isBlue:
         #mpp.drive_speed(-7, 40)
-        mpp.drive_speed(-8, 50)
+        mpp.drive_speed(-8.5, 50)
         #mpp.drive_speed(1.5, 40)
         #mpp.drive_timed(-60, -30, 2)
         u.move_servo(c.servoArmBin, c.armDown)
@@ -135,29 +136,34 @@ def driveToNextTrees():
     mpp.rotate(-90, 50)
     mpp.drive_speed(-7, 80)
     msleep(500)
-    mpp.drive_speed(14, 80)
+    mpp.drive_speed(17, 80)#14
     msleep(500)
     mpp.rotate(89, 50)
-    msleep(5000)
-    mpp.drive_speed(44, 90)
-    u.DEBUG()
+    msleep(1000)
+    u.amazinglyPerfectLineFolloe(7.5, 80)
+
+    #mpp.drive_speed(44, 90)
     msleep(500)
     mpp.rotate(-90, 50)
-    mpp.drive_speed(-14, 80)
+    mpp.drive_speed(-19, 80)
     msleep(500)
     mpp.drive_speed(5, 80)
-    mpp.rotate(90, 50)
-    mpp.drive_speed(-11.75, 50)
+    mpp.rotate(93, 50)
+    mpp.drive_speed(-14, 50)
     msleep(500)
 
 def driveFinalThreeTrees():
     u.move_servo(c.servoArmBin, c.armDown, 25)
     mpp.drive_speed(.75, 50)
-    collectPoms()
-    msleep(500)
-    mpp.drive_speed(13, 50)
-    collectPoms()
-    msleep(500)
-    mpp.drive_speed(13, 50)
-    collectPoms()
-    msleep(500)
+    msleep(250)
+    # u.waitForButton()
+    mpp.get_poms_timed(50, 7000)
+    msleep(1000)
+    # u.waitForButton()
+    driveUntilTree()
+    # u.waitForButton()
+    mpp.get_poms_timed(50, 7000)
+    msleep(1000)
+    driveUntilTree()
+    mpp.get_poms_timed(50, 7000)
+    msleep(1000)

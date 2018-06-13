@@ -34,7 +34,7 @@ WHEEL_DISTANCE = 5.25 #205 - 4.25  # Distance between the two wheels
 #was 5.00
 
 lAdjust = 1.00 # adjust left wheel counter to fix drift
-lAdjustForward = 1.025
+lAdjustForward = 1.01 #1.025
 lAdjustBack = 1.00
 
 if isBlue:

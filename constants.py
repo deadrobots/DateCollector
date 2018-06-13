@@ -34,8 +34,9 @@ ORANGE_AREA=500
 RGY_AREA=100
 
 #Tophat
-FRONT_TOPHAT = 0
-onBlack = 3000
+FRONT_TOPHAT = 5
+SIDE_TOPHAT = 0
+onBlack = 2000
 
 # Servo Positions
 armUp = 530
@@ -49,4 +50,4 @@ clawCollect = 0
 clawOpen = 1270
 
 #ET
-onTree = 1800
+onTree = 2000
