@@ -16,8 +16,8 @@ def main():
     act.driveFirstThreeTrees()
     #u.DEBUG()
     act.driveToNextTrees()
-    #u.DEBUG()
     act.driveFinalThreeTrees()
+    u.DEBUG()
 
 if __name__ == "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)

@@ -9,7 +9,9 @@ It requires boolean "isClone", integer "LMOTOR", and integer "RMOTOR" from a "co
 These values refer to prime/clone status, the left motor's port, and the right motor's port respectively.
 '''
 
+from constants import isGreen
 from constants import isBlue
+from constants import isYellow
 from constants import LMOTOR
 from constants import RMOTOR
 
@@ -28,22 +30,28 @@ import constants as c
 
 
 # Drive Constants
-INCHES_TO_TICKS = 215 #169   #205 - 161     #156#127#50 cm #265
-WHEEL_DISTANCE = 5.25 #205 - 4.25  # Distance between the two wheels
 #Was 161
 #was 5.00
 
-lAdjust = 1.00 # adjust left wheel counter to fix drift
-lAdjustForward = 1.01 #1.025
-lAdjustBack = 1.00
 
 if isBlue:
+    WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
     INCHES_TO_TICKS = 225
     lAdjustForward = 1.08 #Higher number makes robot go left.
     lAdjustBack = 1.05 #Higher number makes robot go BACKWARDS and left.
-#1.08
+elif isYellow:
+    WHEEL_DISTANCE = 5  # 205 - 4.25  # Distance between the two wheels
+    INCHES_TO_TICKS = 162
+    lAdjustForward = 0.99  # Higher number makes robot go left.
+    lAdjustBack = 1.0  # Higher number makes robot go BACKWARDS and left.
+elif isGreen:
+    WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
+    lAdjust = 1.00  # adjust left wheel counter to fix drift
+    lAdjustForward = 1.01  # 1.025
+    lAdjustBack = 1.00
 
-# Motor Control #
+
+#Motor Control
 
 def _drive(left, right):  # Moves the robot using motor commands.
     motor(LMOTOR, left)
