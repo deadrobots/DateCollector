@@ -10,7 +10,6 @@ import motorsPlusPlus as mpp
 
 def main():
     print ("Running the code")
-    #act.calibrate_drive()
     act.init()
     act.driveOutStartBox()
     act.driveFirstThreeTrees()
