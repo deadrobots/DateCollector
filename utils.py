@@ -147,22 +147,13 @@ def timedLineFollowLeftSmooth(time):
             d.driveTimed(40, 20, 20)
         msleep(10)
 
-def amazinglyPerfectLineFolloe(timeth, speedeth):
-    #A Haiku Ode to my LineFolloe:
-    #Tis my line folloe
-    #Tis amazingly perfect
-    #Tis spelled with an e
-    #
-    #TiS ThE DuMmESTT PieCE Of CoDE EvEr wRITtEn
-    #
-    #Tis the smoothest lineFolloe to ever be knowneth, and tis the best
-    #Tis made by the Coding MASTER AJ
-    #Max speed is 80... K?
-    #Proportional adjustment LF :)
-    secondseth = seconds() + timeth
-    while seconds() < secondseth:
+def smoothLineFollowLeft(time, speed):
+    #Max speed is 80
+    #Proportional adjustment LF
+    sec = seconds() + time
+    while seconds() < sec:
         num = ((w.analog(5) - 1500) / 120)
-        d.driveTimed(speedeth-num, speedeth+num, 20)
+        d.driveTimed(speed-num, speed+num, 20)
         msleep(10)
 
 

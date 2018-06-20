@@ -13,7 +13,6 @@ def main():
     act.init()
     act.driveOutStartBox()
     act.driveFirstThreeTrees()
-    u.DEBUG()
     act.driveToNextTrees()
     act.driveFinalThreeTrees()
     u.DEBUG()
