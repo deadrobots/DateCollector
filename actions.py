@@ -23,6 +23,7 @@ def init():
     startTest()
     #msleep(500)
     u.waitForButton()
+    c.startTime = seconds()
 
 def calibrate_drive ():
     #Used to test how straight the robot drives forward and backward
@@ -65,7 +66,7 @@ def driveOutStartBox():
         mpp.drive_speed(3.5, 80)  # 9.4
         mpp.rotate(-90, 50)#-90
         u.move_servo(c.servoArmBin, c.armUp)
-        mpp.drive_speed(-26.7, 80)#-20.75#26.9
+        mpp.drive_speed(-26.9, 80)#-20.75#26.9
         mpp.rotate(90, 50) #was 66 #was 58
         mpp.drive_speed(-5, 40)
         mpp.drive_speed(3, 40)
@@ -133,13 +134,13 @@ def driveFirstThreeTrees():
         u.move_servo(c.servoArmBin, c.armDown)
         msleep(500)
         mpp.drive_speed(1.5, 50)
-        mpp.get_poms_timed(50, 7000)
+        mpp.get_poms_timed(100, 3500)
         msleep(1000)
         driveUntilTree()
-        mpp.get_poms_timed(50, 7000)
+        mpp.get_poms_timed(100, 3500)
         msleep(1000)
         driveUntilTree()
-        mpp.get_poms_timed(50, 7000)
+        mpp.get_poms_timed(100, 3500)
         msleep(1000)
     elif c.isGreen:
         mpp.drive_speed(-7, 50)
@@ -223,21 +224,30 @@ def driveFinalThreeTrees():
         mpp.get_poms_timed(50, 7000)
         msleep(1000)
     if c.isGreen:
-        mpp.drive_speed(-10, 40)
-        mpp.rotate(-12, 50)
+        mpp.drive_speed(-9.5, 40)
+        mpp.rotate(-14, 50)
         mpp.drive_speed(-8, 40)
         u.move_servo(c.servoArmBin, c.armDown)
-        mpp.pivot_right(12, 25)
+        mpp.pivot_right(17, 25)
         mpp.drive_speed(.2, 50)
-        #u.waitForButton()
-        mpp.get_poms_timed(50, 8300)
+        mpp.get_poms_timed(50, 9300)
         msleep(1000)
         driveUntilTree()
-        mpp.get_poms_timed(50, 8300)
+        mpp.drive_speed(.2, 50)
+        mpp.get_poms_timed(50, 9300)
         msleep(1000)
-        driveUntilTree()
-        mpp.get_poms_timed(50, 8300)
-        msleep(1000)
+        ######ET isn't low enough right now
+        #driveUntilTree()
+        #mpp.drive_speed(.2, 50)
+        #mpp.get_poms_timed(50, 8300)
+        #msleep(1000)
+        mpp.pivot_right(-8, 25)  # -8
+        mpp.drive_speed(4, 50)
+        mpp.pivot_right(8, 25)
+        mpp.drive_speed(9.5, 50)
+        mpp.pivot_right(4, 25)
+        mpp.get_poms_timed(50, 9300)
+
     if c.isBlue:
         mpp.drive_speed(3, 40)
         mpp.rotate(-28, 50)
