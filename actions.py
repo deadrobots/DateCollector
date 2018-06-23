@@ -70,7 +70,7 @@ def driveOutStartBox():
         mpp.rotate(90, 50) #was 66 #was 58
         mpp.drive_speed(-5, 40)
         mpp.drive_speed(3, 40)
-        mpp.rotate(-30, 50)
+        mpp.rotate(-32, 50)
         msleep(1000)
     elif c.isYellow:
         mpp.drive_speed(3.5, 80)
@@ -192,7 +192,10 @@ def driveToNextTrees():
         u.smoothLineFollowLeft(5, 80)
     #mpp.drive_speed(44, 90)
     msleep(500)
-    mpp.rotate(-90, 50)
+    if c.isGreen:
+        mpp.rotate(-95, 50)
+    else:
+        mpp.rotate(-90, 50)
     mpp.drive_speed(-20, 80)
     msleep(500)
     mpp.drive_speed(5.5, 80)
