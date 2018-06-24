@@ -14,6 +14,7 @@ from constants import isBlue
 from constants import isYellow
 from constants import LMOTOR
 from constants import RMOTOR
+from utils import waitForButton
 
 from math import pi
 
@@ -271,3 +272,17 @@ def get_poms_timed (speed, time):
     motor(c.DATEMOTOR, 0)
     motor(c.LMOTOR, 0)
     motor(c.RMOTOR, 0)
+
+def calibrate_drive ():
+    #Used to test how straight the robot drives forward and backward
+    print("Calibration Drive")
+    if (c.isBlue):
+        print("IS BLUE")
+    elif c.isGreen:
+        print("IS GREEN")
+    elif c.isYellow:
+        print("IS YELLOW")
+    drive_speed(24, 80)
+    waitForButton()
+    drive_speed(24, -80)
+    waitForButton()

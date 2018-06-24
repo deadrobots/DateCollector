@@ -25,19 +25,7 @@ def init():
     u.waitForButton()
     c.startTime = seconds()
 
-def calibrate_drive ():
-    #Used to test how straight the robot drives forward and backward
-    print("Calibration Drive")
-    if (c.isBlue):
-        print("IS BLUE")
-    elif c.isGreen:
-        print("IS GREEN")
-    elif c.isYellow:
-        print("IS YELLOW")
-    mpp.drive_speed(24, 80)
-    u.waitForButton()
-    mpp.drive_speed(24, -80)
-    u.waitForButton()
+
 
 def startTest():
     print("Running Start Test")
@@ -45,10 +33,6 @@ def startTest():
     mpp.drive_speed(-3, 30)
     u.move_servo(c.servoArmBin, c.armUp)
     u.move_servo(c.servoArmBin, c.armDown)
-    '''u.move_servo(c.servoSlider, c.sliderOut)
-    u.move_servo(c.servoSlider, c.sliderBack)
-    u.move_servo(c.servoClawPoms, c.clawOpen)
-    u.move_servo(c.servoClawPoms, c.clawClosed)'''
     mpp.drive_date_motor(50, 1000)
 
 def driveOutStartBox():
@@ -64,13 +48,13 @@ def driveOutStartBox():
         msleep(500)
     elif c.isGreen:
         mpp.drive_speed(3.5, 80)  # 9.4
-        mpp.rotate(-90, 50)#-90
+        mpp.rotate(-92, 50)#-90
         u.move_servo(c.servoArmBin, c.armUp)
-        mpp.drive_speed(-26.9, 80)#-20.75#26.9
-        mpp.rotate(90, 50) #was 66 #was 58
+        mpp.drive_speed(-26.9, 80)
+        mpp.rotate(90, 50)
         mpp.drive_speed(-5, 40)
         mpp.drive_speed(3, 40)
-        mpp.rotate(-32, 50)
+        mpp.rotate(-28, 50) #was -30
         msleep(1000)
     elif c.isYellow:
         mpp.drive_speed(3.5, 80)
@@ -149,7 +133,6 @@ def driveFirstThreeTrees():
         msleep(250)
         motor_power(c.RMOTOR,10)
         mpp.get_poms_timed(50, 8000)
-        #u.DEBUG()
         msleep(1000)
         driveUntilTree()
         mpp.get_poms_timed(50, 8000)
@@ -171,6 +154,25 @@ def driveFirstThreeTrees():
         driveUntilTree()
         mpp.get_poms_timed(50, 7000)
         msleep(1000)
+
+def driveFirstTreesExperiment():
+    if c.isGreen:
+        mpp.drive_speed(-7, 50)
+        mpp.drive_speed(0.5, 20)  # .73
+        msleep(250)
+        #motor_power(c.RMOTOR, 10)
+        mpp.get_poms_timed(70, 6000)
+        msleep(1000)
+        driveUntilTree()
+        u.move_servo(c.servoArmBin, c.armDown)
+        u.waitForButton()
+        mpp.get_poms_timed(70, 6000)
+        msleep(1000)
+        driveUntilTree()
+        mpp.get_poms_timed(70, 6000)
+        msleep(1000)
+    else:
+        pass
 
 def driveToNextTrees():
     #Uses an amazingly smooth line follow to go from one set of trees to the other
@@ -207,6 +209,40 @@ def driveToNextTrees():
         mpp.rotate(93, 50)
     msleep(500)
 
+def driveToNextTrees2():
+    print("Driving to Next Set of Trees")
+    u.move_servo(c.servoArmBin, c.armUp, 25)
+    mpp.drive_speed(-4.2, 60)
+    if c.isGreen:
+        mpp.rotate(-92, 50)
+    else:
+        mpp.rotate(-90, 50)
+    mpp.drive_speed(-7, 80)
+    msleep(500)
+    mpp.drive_speed(17, 80)  # 14
+    msleep(500)
+    mpp.rotate(89, 50)
+    msleep(1000)
+    if c.isGreen:
+        u.smoothLineFollowLeft(5.75, 80)
+    else:
+        pass
+    u.waitForButton()
+    msleep(500)
+    if c.isGreen:
+        mpp.rotate(-95, 50)
+        mpp.drive_speed(-19.5, 60)
+    else:
+        mpp.rotate(-90, 50)
+        mpp.drive_speed(-20, 80)
+    u.waitForButton()
+    mpp.drive_speed(5.5, 80)
+    if c.isGreen:
+        mpp.rotate(94.5, 50)
+    else:
+        mpp.rotate(93, 50)
+    msleep(500)
+
 def driveFinalThreeTrees():
     # Goes from each of the last three trees collecting poms
     print("Collect Final Three Sets of Poms")
@@ -227,14 +263,18 @@ def driveFinalThreeTrees():
         mpp.get_poms_timed(50, 7000)
         msleep(1000)
     if c.isGreen:
-        mpp.drive_speed(-9.5, 40)
+        mpp.drive_speed(-3, 40) #was -9.5
+        u.waitForButton()
         mpp.rotate(-14, 50)
         mpp.drive_speed(-8, 40)
+        u.waitForButton()
         u.move_servo(c.servoArmBin, c.armDown)
         mpp.pivot_right(17, 25)
         mpp.drive_speed(.2, 50)
+        u.waitForButton()
         mpp.get_poms_timed(50, 9300)
         msleep(1000)
+        u.DEBUG()
         driveUntilTree()
         mpp.drive_speed(.2, 50)
         mpp.get_poms_timed(50, 9300)

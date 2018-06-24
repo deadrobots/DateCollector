@@ -12,8 +12,10 @@ def main():
     print ("Running")
     act.init()
     act.driveOutStartBox()
-    act.driveFirstThreeTrees()
-    act.driveToNextTrees()
+    act.driveFirstTreesExperiment()
+    #act.driveFirstThreeTrees()
+    act.driveToNextTrees2()
+    #act.driveToNextTrees()
     act.driveFinalThreeTrees()
     u.DEBUG()
 
