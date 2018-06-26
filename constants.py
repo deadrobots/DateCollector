@@ -22,6 +22,7 @@ isBlue = not isGreen and not isYellow
 
 # Servos
 servoArmBin = 0
+servoPipeWheel = 2
 
 # camera channels
 ORANGE = 0
@@ -50,3 +51,9 @@ elif isYellow:
     # Servo Positions
     armUp = 1110
     armDown = 1850
+elif isBlue:
+    armUp = 1580
+    armDown = 1010
+    pipeBin = 1400
+    pipeStraight = 2000
+    pipeOut = 890

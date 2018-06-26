@@ -37,9 +37,10 @@ import constants as c
 
 if isBlue:
     WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
-    INCHES_TO_TICKS = 225
-    lAdjustForward = 1.08 #Higher number makes robot go left.
-    lAdjustBack = 1.05 #Higher number makes robot go BACKWARDS and left.
+    INCHES_TO_TICKS = 214.7
+    lAdjust = 1  # adjust left wheel counter to fix drift
+    lAdjustForward = 1.055 #Higher number makes robot go left.
+    lAdjustBack = 1.035 #Higher number makes robot go BACKWARDS and left.
 elif isYellow:
     WHEEL_DISTANCE = 5  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 162
@@ -263,11 +264,6 @@ def drive_date_motor(speed, time):
 
 def get_poms_timed (speed, time):
     motor(c.DATEMOTOR, speed)
-    if (c.isBlue):
-        motor(c.LMOTOR, -10)
-        motor(c.RMOTOR, 10)
-    else:
-        pass
     msleep(time)
     motor(c.DATEMOTOR, 0)
     motor(c.LMOTOR, 0)
