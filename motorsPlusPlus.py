@@ -226,6 +226,8 @@ def rotate(deg, speed):  # Rotates by using both wheels equally.
         pass
     freeze_motors()
     print (get_motor_position_counter(RMOTOR))
+    #print (get_motor_position_counter(LMOTOR))  #trying to compare values for consistent rotation
+
 
 
 def pivot_right(deg, speed):  # Pivots by moving the right wheel.

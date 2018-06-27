@@ -43,9 +43,10 @@ def driveOutStartBox():
     if (c.isBlue):
         #drives out of start box to pom
         mpp.drive_speed(4, 80)
-        mpp.rotate(-87, 50)
+        mpp.rotate(-89, 50)
+        u.DEBUG()
         u.move_servo(c.servoArmBin, c.armUp)
-        mpp.drive_speed(-27, 80) #27
+        mpp.drive_speed(-27.5, 80) #27
         mpp.rotate(90, 50)
         mpp.drive_speed(-6, 40) #5
         mpp.drive_speed(3, 40)
@@ -77,20 +78,6 @@ def driveUntilTree():
     #Drives from one date tree to the next
     print("Looking for Trees")
     if (c.isBlue):
-        # mpp.drive_speed(10, 50)
-        # mpp.rotate(-10, 30)
-        # mpp.pivot_right(-8, 25)  # -8
-        # mpp.drive_speed(4, 50)
-        # mpp.pivot_right(8, 25)
-        # while analog(c.ET) < c.onTree:
-        #     mpp.drive_timed(50, 50, 0.01)
-        #     print(analog(c.ET))
-        # print("Saw Tree")
-        # u.waitForButton()
-        # mpp.drive_speed(2, 50)
-        # #mpp.drive_timed(5, 40, 1.5) commented out
-        # mpp.pivot_right(10, 25)
-        # u.waitForButton()
         mpp.pivot_right(-8, 25)  # -8
         mpp.drive_speed(4, 50)
         mpp.pivot_right(8, 25)
@@ -144,15 +131,18 @@ def driveFirstTreesExperiment():
         mpp.drive_speed(0.5, 20)  # .73
         msleep(250)
         # motor_power(c.RMOTOR, 10)
-        mpp.get_poms_timed(50, 6000)
+        mpp.get_poms_timed(50, 9000)
         msleep(1000)
-        driveUntilTree()
-        u.move_servo(c.servoArmBin, c.armDown)
+        u.move_servo(c.servoPipeWheel,c.pipeStraight)
         u.waitForButton()
-        mpp.get_poms_timed(70, 6000)
+        driveUntilTree()
+        mpp.drive_speed(2.85,50)
+        u.move_servo(c.servoPipeWheel,c.pipeBin)
+        u.move_servo(c.servoArmBin, c.armDown)
+        mpp.get_poms_timed(50, 9000)
         msleep(1000)
         driveUntilTree()
-        mpp.get_poms_timed(70, 6000)
+        mpp.get_poms_timed(60, 6000)
         msleep(1000)
 
 def driveToNextTrees():
