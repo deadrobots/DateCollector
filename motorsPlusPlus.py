@@ -154,7 +154,35 @@ def drive_speed(inches, speed):  # Drives an exact distance in inches.
     freeze_motors()
     print (ticks)
     print (get_motor_position_counter(RMOTOR))
-
+    
+    #liam toole
+    #June 27, 2018
+def rotate(deg, speed):  # Hopefullly rotates to an exact position using both wheels
+    print("rotating exact degrees")
+    global lAdjust
+    if deg < 0:
+        speed = -speed
+        deg = -deg
+        lAdjust = lAdjustBack
+    else: 
+        lAdjust = lAdjustForward
+    angle = deg / 360.0
+    circ = pi * WHEEL_DISTANCE
+    inches = angle * circ
+    print (circ)
+    print (inches)
+    ticks = int(INCHES_TO_TICKS * inches)
+    _clear_ticks()
+    while _right_ticks() <= ticks:  
+        if _right_ticks() == _left_ticks():     #these if statements need to be tested in person
+            _drive(-speed, speed)                  
+        if _right_ticks() > _left_ticks():      #not sure how ticks are tracked when motors move in opposite directions
+            _drive(-speed, int(speed / 1.3))
+        if _left_ticks() > _right_ticks():      #hopefully this works
+            _drive(-int(speed / 1.3), speed)       
+    freeze_motors()
+    print (get_motor_position_counter(RMOTOR))
+    #end changes
 
 def drive_timed(lmotor, rmotor, time):
     print ("driving timed")
