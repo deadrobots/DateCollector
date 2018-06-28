@@ -37,10 +37,10 @@ import constants as c
 
 if isBlue:
     WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
-    INCHES_TO_TICKS = 214.7
+    INCHES_TO_TICKS = 219.26
     lAdjust = 1  # adjust left wheel counter to fix drift
-    lAdjustForward = 1.055 #Higher number makes robot go left.
-    lAdjustBack = 1.035 #Higher number makes robot go BACKWARDS and left.
+    lAdjustForward = 1.07 #Higher number makes robot go left.
+    lAdjustBack = 1.02 #Higher number makes robot go BACKWARDS and left.
 elif isYellow:
     WHEEL_DISTANCE = 5  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 162
@@ -209,8 +209,8 @@ def drive_condition(lmotor, rmotor, testFunction,
     freeze_motors()
     print (get_motor_position_counter(RMOTOR))
 
-
 def rotate(deg, speed):  # Rotates by using both wheels equally.
+    print("rotating")
     if deg < 0:
         speed = -speed
         deg = -deg
@@ -225,7 +225,8 @@ def rotate(deg, speed):  # Rotates by using both wheels equally.
     while _right_ticks() <= ticks:
         pass
     freeze_motors()
-    print (get_motor_position_counter(RMOTOR))
+    print (_right_ticks())
+    print (_left_ticks())
     #print (get_motor_position_counter(LMOTOR))  #trying to compare values for consistent rotation
 
 

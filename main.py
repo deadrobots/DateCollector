@@ -9,7 +9,7 @@ import drive as d
 import motorsPlusPlus as mpp
 
 def main():
-    print ("Running")
+    print ("Running code")
     act.init()
     act.driveOutStartBox()
     act.driveFirstTreesExperiment()

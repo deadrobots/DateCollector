@@ -44,11 +44,10 @@ def driveOutStartBox():
         #drives out of start box to pom
         mpp.drive_speed(4, 80)
         mpp.rotate(-89, 50)
-        u.DEBUG()
-        u.move_servo(c.servoArmBin, c.armUp)
-        mpp.drive_speed(-27.5, 80) #27
+        u.move_servo(c.servoArmBin,c.armUp)
+        mpp.drive_speed(-27.25, 80) #27
         mpp.rotate(90, 50)
-        mpp.drive_speed(-6, 40) #5
+        mpp.drive_speed(-5, 40) #5
         mpp.drive_speed(3, 40)
         mpp.rotate(-30, 50)  # was -30
         msleep(1000)
