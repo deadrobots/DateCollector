@@ -11,7 +11,6 @@ def init():
     #The starting position is marked with pencil on the closest box on the right side
     #If you cant see the lines, the bot should be flush to the wall parallel to the tram
     #For a more exact placement, the left wheel should be 4.75 inches from the black tape
-    #starting positions
     print("Init")
     if(c.isBlue):
         print("IS BLUE")
@@ -25,31 +24,35 @@ def init():
     u.waitForButton()
     c.startTime = seconds()
 
-
-
 def startTest():
     print("Running Start Test")
-    mpp.drive_speed(3, 30)
-    mpp.drive_speed(-3, 30)
+    while analog(c.LEFT_TOPHAT) < 1500:
+        mpp.drive_speed(.1, 50)
+    mpp.drive_speed(-2, 50)
+    while analog(c.RIGHT_TOPHAT) < 1500:
+        mpp.drive_speed(.1, 50)
+    mpp.drive_speed(-9, 50)
     u.move_servo(c.servoArmBin, c.armUp)
     u.move_servo(c.servoArmBin, c.armDown)
     u.move_servo(c.servoPipeWheel, c.pipeOut)
     u.move_servo(c.servoPipeWheel, c.pipeBin)
     mpp.drive_date_motor(50, 1000)
+    print "Do the ET check!!!! (put you hand in front)"
+    while analog(c.ET) < 1000:
+        pass
 
 def driveOutStartBox():
     #Starts from the start box, drives to first date tree and positions itself to collect
     print("Drive Out of Start Box")
     if (c.isBlue):
-        #drives out of start box to pom
         mpp.drive_speed(4, 80)
-        mpp.rotate(-89, 50)
+        mpp.rotate(-83, 50)
         u.move_servo(c.servoArmBin,c.armUp)
-        mpp.drive_speed(-27.25, 80) #27
+        mpp.drive_speed(-26.2, 80) #27
         mpp.rotate(90, 50)
         mpp.drive_speed(-5, 40) #5
         mpp.drive_speed(3, 40)
-        mpp.rotate(-30, 50)  # was -30
+        mpp.rotate(-24, 50)  # was -30
         msleep(1000)
     elif c.isGreen:
         mpp.drive_speed(3.5, 80)  # 9.4
@@ -95,9 +98,6 @@ def driveUntilTree():
         print("Saw Tree")
         mpp.pivot_right(2, 25)#10
         mpp.drive_speed(1.4, 50)#1.4
-        # mpp.drive_timed(5, 40, 1.5)
-        #mpp.drive_speed(2, 50)
-        #u.waitForButton()
     elif c.isYellow:
         mpp.pivot_right(-8, 25)
         mpp.drive_speed(6, 50)
@@ -109,10 +109,11 @@ def driveUntilTree():
         mpp.pivot_right(9, 25) #was 5
         mpp.drive_speed(1.2, 50) #was 2.5
 
-def driveFirstTreesExperiment():
+def driveFirstTrees():
     if c.isGreen:
         mpp.drive_speed(-7, 50)
         mpp.drive_speed(0.5, 20)  # .73
+        mpp.pivot_right(3, 50)
         msleep(250)
         #motor_power(c.RMOTOR, 10)
         mpp.get_poms_timed(70, 6000)
@@ -220,7 +221,6 @@ def driveFinalThreeTrees():
         mpp.drive_speed(3, 40)
         mpp.rotate(-28, 50)
         msleep(1000)
-        #mpp.drive_speed(-7, 50)
         mpp.drive_timed(-75,-100,1.5)
         u.move_servo(c.servoArmBin, c.armDown)
         u.waitForButton()
@@ -249,11 +249,6 @@ def driveFinalThreeTrees():
         mpp.drive_speed(.2, 50)
         mpp.get_poms_timed(50, 9300)
         msleep(1000)
-        ######ET isn't low enough right now
-        #driveUntilTree()
-        #mpp.drive_speed(.2, 50)
-        #mpp.get_poms_timed(50, 8300)
-        #msleep(1000)
         mpp.pivot_right(-8, 25)  # -8
         mpp.drive_speed(4, 50)
         mpp.pivot_right(8, 25)
