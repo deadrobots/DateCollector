@@ -152,7 +152,7 @@ def smoothLineFollowLeft(time, speed):
     #Proportional adjustment LF
     sec = seconds() + time
     while seconds() < sec:
-        num = ((w.analog(5) - 1500) / 120)
+        num = ((w.analog(4) - 1500) / 120)
         d.driveTimed(speed-num, speed+num, 20)
         msleep(10)
 

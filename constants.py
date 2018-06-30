@@ -3,22 +3,25 @@ import wallaby as w
 # Time
 startTime = -1
 
-# Motor ports
-LMOTOR = 3
-RMOTOR = 0
-DATEMOTOR = 1
-
 # Digital ports
 GREEN_CLONE_SWITCH = 9
 YELLOW_CLONE_SWITCH = 8
 RIGHT_BUTTON = 13
 
-#Analog Ports
-ET = 0
-
 isGreen = w.digital(GREEN_CLONE_SWITCH)
 isYellow = w.digital(YELLOW_CLONE_SWITCH)
 isBlue = not isGreen and not isYellow
+
+# Motor ports
+LMOTOR = 3
+RMOTOR = 0
+if isBlue:
+    DATEMOTOR = 2
+else:
+    DATEMOTOR = 1
+
+#Analog Ports
+ET = 0
 
 # Servos
 servoArmBin = 0
@@ -54,6 +57,6 @@ elif isYellow:
 elif isBlue:
     armUp = 1580
     armDown = 1010
-    pipeBin = 1400
+    pipeBin = 1500
     pipeStraight = 2000
     pipeOut = 890

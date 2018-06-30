@@ -45,14 +45,26 @@ def driveOutStartBox():
     #Starts from the start box, drives to first date tree and positions itself to collect
     print("Drive Out of Start Box")
     if (c.isBlue):
-        mpp.drive_speed(4, 80)
-        mpp.rotate(-83, 50)
+        mpp.drive_speed(4, 90)
+        mpp.rotate(-82, 70)
         u.move_servo(c.servoArmBin,c.armUp)
-        mpp.drive_speed(-26.2, 80) #27
-        mpp.rotate(90, 50)
-        mpp.drive_speed(-5, 40) #5
-        mpp.drive_speed(3, 40)
-        mpp.rotate(-24, 50)  # was -30
+        mpp.drive_speed(-25.9, 90) #27
+        msleep(2000)
+        #Trying to square up on line, but distance between sensors and wheels made it difficult
+        #while analog(c.LEFT_TOPHAT)<2000:
+        #    mpp.drive_speed(.05, 50)
+        #if analog(c.RIGHT_TOPHAT) < 2000:
+        #    while analog(c.RIGHT_TOPHAT) < 2000:
+        #        mpp.pivot_left()
+        #else:
+        #    while analog(c.RIGHT_TOPHAT) >= 2000:
+
+        #-20
+        u.move_servo(c.servoPipeWheel, c.pipeStraight)
+        mpp.rotate(90, 70)
+        mpp.drive_speed(-6, 80) #5
+        mpp.drive_speed(3, 80)
+        mpp.rotate(-27, 70)  # was -30
         msleep(1000)
     elif c.isGreen:
         mpp.drive_speed(3.5, 80)  # 9.4
@@ -80,14 +92,18 @@ def driveUntilTree():
     #Drives from one date tree to the next
     print("Looking for Trees")
     if (c.isBlue):
-        mpp.pivot_right(-8, 25)  # -8
+        mpp.pivot_right(-16, 25)  # -8
+        mpp.drive_speed(3, 50)
+        mpp.pivot_right(24, 25)
         mpp.drive_speed(4, 50)
-        mpp.pivot_right(8, 25)
+        #mpp.pivot_right(-3, 25)
         while analog(c.ET) < c.onTree:
             mpp.drive_timed(50, 50, 0.01)
             print(analog(c.ET))
         print("Saw Tree")
-        mpp.pivot_right(2, 25)  # 10
+        u.move_servo(c.servoArmBin, c.armDown)
+        mpp.drive_speed(2.21, 50)
+        #mpp.pivot_right(2, 25)  # 10
     elif c.isGreen:
         mpp.pivot_right(-8, 25)#-8
         mpp.drive_speed(4, 50)
@@ -110,39 +126,40 @@ def driveUntilTree():
         mpp.drive_speed(1.2, 50) #was 2.5
 
 def driveFirstTrees():
-    if c.isGreen:
-        mpp.drive_speed(-7, 50)
-        mpp.drive_speed(0.5, 20)  # .73
-        mpp.pivot_right(3, 50)
-        msleep(250)
-        #motor_power(c.RMOTOR, 10)
-        mpp.get_poms_timed(70, 6000)
-        msleep(1000)
-        driveUntilTree()
+    if c.isBlue:
+        mpp.drive_speed(-9, 60)
         u.move_servo(c.servoArmBin, c.armDown)
-        u.waitForButton()
-        mpp.get_poms_timed(70, 6000)
-        msleep(1000)
-        driveUntilTree()
-        mpp.get_poms_timed(70, 6000)
-        msleep(1000)
-    elif c.isBlue:
-        mpp.drive_speed(-7, 50)
-        mpp.drive_speed(0.5, 20)  # .73
+        mpp.drive_speed(1.3, 20)  # .73
         msleep(250)
         # motor_power(c.RMOTOR, 10)
         mpp.get_poms_timed(50, 9000)
         msleep(1000)
+        u.move_servo(c.servoArmBin, c.armUp)
         u.move_servo(c.servoPipeWheel,c.pipeStraight)
-        u.waitForButton()
+        #u.waitForButton()
         driveUntilTree()
-        mpp.drive_speed(2.85,50)
-        u.move_servo(c.servoPipeWheel,c.pipeBin)
-        u.move_servo(c.servoArmBin, c.armDown)
-        mpp.get_poms_timed(50, 9000)
+        u.move_servo(c.servoPipeWheel, c.pipeBin)
+        mpp.get_poms_timed(80, 6000)
         msleep(1000)
         driveUntilTree()
-        mpp.get_poms_timed(60, 6000)
+        mpp.drive_speed(.35, 50)
+        mpp.get_poms_timed(70, 6000)
+        msleep(1000)
+    elif c.isGreen:
+        mpp.drive_speed(-7, 50)
+        mpp.drive_speed(0.5, 20)  # .73
+        mpp.pivot_right(3, 50)
+        msleep(250)
+        # motor_power(c.RMOTOR, 10)
+        mpp.get_poms_timed(70, 6000)
+        msleep(1000)
+        driveUntilTree()
+        u.move_servo(c.servoArmBin, c.armDown)
+        u.waitForButton()
+        mpp.get_poms_timed(70, 6000)
+        msleep(1000)
+        driveUntilTree()
+        mpp.get_poms_timed(70, 6000)
         msleep(1000)
 
 def driveToNextTrees():
@@ -196,9 +213,10 @@ def driveToNextTrees2():
     msleep(1000)
     if c.isGreen:
         u.smoothLineFollowLeft(5.75, 80)
+    elif c.isBlue:
+        u.smoothLineFollowLeft(5, 80)
     else:
         pass
-    u.waitForButton()
     msleep(500)
     if c.isGreen:
         mpp.rotate(-95, 50)
