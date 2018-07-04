@@ -28,6 +28,7 @@ from wallaby import msleep
 from wallaby import seconds
 from wallaby import set_servo_position
 import constants as c
+import utils as u
 
 
 # Drive Constants
@@ -44,7 +45,7 @@ if isBlue:
 elif isYellow:
     WHEEL_DISTANCE = 5  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 162
-    lAdjustForward = 0.99  # Higher number makes robot go left.
+    lAdjustForward = 1  # Higher number makes robot go left.
     lAdjustBack = 1.0  # Higher number makes robot go BACKWARDS and left.
 elif isGreen:
     WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
@@ -133,7 +134,7 @@ def arc_radius(angle, turnRadius, speed):  # Turns the robot "angle" degrees by 
     print (get_motor_position_counter(RMOTOR))
 
 
-def drive_speed(inches, speed):  # Drives an exact distance in inches.
+def drive_speed(inches, speed):  # Drives an exact distance in inches
     print ("driving exact distance")
     global lAdjust
     if inches < 0:
@@ -269,6 +270,18 @@ def get_poms_timed (speed, time):
     motor(c.DATEMOTOR, speed)
     msleep(time)
     motor(c.DATEMOTOR, 0)
+    motor(c.LMOTOR, 0)
+    motor(c.RMOTOR, 0)
+
+def new_get_poms_timed (speed, time):
+    for x in range(3):
+        motor(c.DATEMOTOR1, speed)
+        motor(c.DATEMOTOR2, speed)
+        msleep(time/3)
+        motor(c.DATEMOTOR1, 0)
+        motor(c.DATEMOTOR2, 0)
+        u.move_servo(c.servoDateWheel, c.wheelIn+300, 20)
+        u.move_servo(c.servoDateWheel, c.wheelIn, 20)
     motor(c.LMOTOR, 0)
     motor(c.RMOTOR, 0)
 
