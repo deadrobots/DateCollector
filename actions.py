@@ -45,9 +45,13 @@ def startTest():
         mpp.drive_speed(6, 70)
         mpp.drive_speed(-6.5, 70)
         u.move_servo(c.servoDateWheel, c.wheelOut)
-        msleep(500)
+        print "Do the ET check!!!! (put you hand in front)"
+        while analog(c.ET) < 1000:
+            pass
         u.move_servo(c.servoDateWheel, c.wheelIn)
         mpp.new_get_poms_timed(50, 2000)
+        u.move_servo(c.servoPipeWheel, c.pipeOut)
+        u.move_servo(c.servoPipeWheel, c.pipeBin)
 
 def driveOutStartBox():
     #Starts from the start box, drives to first date tree and positions itself to collect
@@ -79,18 +83,19 @@ def driveOutStartBox():
     elif c.isYellow:
         mpp.drive_speed(4, 90)
         msleep(200)
-        mpp.rotate(-79, 70)
+        mpp.rotate(-84, 70)
         msleep(200)
         mpp.drive_speed(-27.2, 90)  # 27
+        u.move_servo(c.servoPipeWheel, c.pipeStraight)
         u.move_servo(c.servoDateWheel, c.wheelOut)
-        mpp.drive_speed(.75, 70)
+        mpp.drive_speed(.45, 70)
         msleep(200)
         mpp.rotate(88, 70)
         msleep(200)
         mpp.drive_speed(-7.5, 80)  # 5
         mpp.drive_speed(3, 80)
         msleep(200)
-        mpp.rotate(-22, 70)  # was -27
+        mpp.rotate(-23, 70)  # was -27
         msleep(200)
         '''
         mpp.drive_speed(3.5, 80)
@@ -127,15 +132,10 @@ def driveUntilTree():
     elif c.isYellow:
         msleep(200)
         while analog(c.ET) < c.onTree:
-            mpp.drive_speed(.1, 65)
+            mpp.drive_speed(.1, 70)
             print(analog(c.ET))
         msleep(200)
         print("Saw Tree")
-        while analog(c.ET) > 500:
-            mpp.drive_speed(.1, 65)
-            print(analog(c.ET))
-        msleep(200)
-        print("Passed Tree")
 
 def driveFirstTrees():
     if c.isBlue:
@@ -147,7 +147,7 @@ def driveFirstTrees():
         msleep(250)
         mpp.pivot_right(4, 60)
         # motor_power(c.RMOTOR, 10)
-        mpp.get_poms_timed(80, 5000)
+        mpp.get_poms_timed(80, 7500)
         mpp.pivot_right(-4, 60)
         msleep(400)
         u.move_servo(c.servoArmBin, c.armUp)
@@ -166,20 +166,47 @@ def driveFirstTrees():
         mpp.get_poms_timed(70, 6000)
         msleep(1000)
     elif c.isYellow:
-        mpp.drive_speed(-9, 70)
+        mpp.drive_speed(-9, 100)
         mpp.drive_speed(1.0, 35)  # .73
         msleep(200)
         mpp.pivot_right(4, 60)
         u.move_servo(c.servoDateWheel, c.wheelIn + 100, 20)
         u.move_servo(c.servoDateWheel, c.wheelIn, 5)
-        mpp.new_get_poms_timed(60, 7500)
-        mpp.pivot_right(-4, 60)
+        mpp.new_get_poms_timed(75, 8000)
         msleep(200)
-        mpp.pivot_right(-16, 50)  # -8
-        mpp.drive_speed(2, 60)
-        mpp.pivot_right(27, 50)
         u.move_servo(c.servoDateWheel, c.wheelOut)
         mpp.drive_speed(4, 60)
+
+###################EXPERIMENTAL FUNCTIONS########################
+def leaveBinAndDriveToNext():
+    mpp.pivot_right(-16, 50)  # -8
+    mpp.drive_speed(1.5, 60)
+    mpp.pivot_right(26.5, 50)
+    u.move_servo(c.servoDateWheel, c.wheelOut)
+    mpp.drive_speed(4, 60)
+    driveUntilTree()
+    msleep(200)
+    mpp.pivot_right(7, 60)
+    u.move_servo(c.servoDateWheel, c.wheelIn + 100, 20)
+    u.move_servo(c.servoDateWheel, c.wheelIn, 5)
+    mpp.new_get_poms_timed(60, 7500)
+    mpp.pivot_right(-7, 60)
+
+def bringBinToNext():
+    mpp.pivot_right(-6, 45)  # -8
+    mpp.drive_speed(3, 70)
+    mpp.pivot_right(6, 45)
+    driveUntilTree()
+    mpp.drive_speed(-1, 60)
+    mpp.pivot_right(5, 60)
+    mpp.get_poms_timed(75, 6000)
+    mpp.pivot_right(-3, 60)
+    msleep(200)
+
+#def skipTree():
+#def bringBinToPrevious():
+
+#################################################################
 
 def grabFirstPoms():
     if c.isBlue:
@@ -204,27 +231,30 @@ def grabFirstPoms():
         driveUntilTree()
         u.move_servo(c.servoArmBin, c.armDown)
         u.waitForButton()
-        mpp.get_poms_timed(70, 6000)
+        mpp.get_poms_timed(70, 7500)
         msleep(1000)
         driveUntilTree()
-        mpp.get_poms_timed(70, 6000)
+        mpp.get_poms_timed(70, 7500)
         msleep(1000)
     elif c.isYellow:
+        u.waitForButton()
         driveUntilTree()
         msleep(200)
-        mpp.pivot_right(7, 60)
+        mpp.drive_speed(.5, 60)
+        mpp.pivot_right(5, 60)
         u.move_servo(c.servoDateWheel, c.wheelIn + 100, 20)
         u.move_servo(c.servoDateWheel, c.wheelIn, 5)
-        mpp.new_get_poms_timed(60, 7500)
-        mpp.pivot_right(-7, 60)
+        mpp.new_get_poms_timed(70, 7500)
         msleep(200)
-        mpp.pivot_right(-6, 45)  # -8
-        mpp.drive_speed(3, 70)
-        mpp.pivot_right(6, 45)
+        mpp.drive_speed(1, 60)
+        u.move_servo(c.servoDateWheel, c.wheelOut)
+        u.move_servo(c.servoPipeWheel, c.pipeBin)
         driveUntilTree()
-        mpp.drive_speed(-1, 60)
-        mpp.pivot_right(5, 60)
-        mpp.get_poms_timed(75, 6000)
+        mpp.drive_speed(.6, 60)
+        mpp.pivot_right(3, 60)
+        u.move_servo(c.servoDateWheel, c.wheelIn + 100, 20)
+        u.move_servo(c.servoDateWheel, c.wheelIn, 5)
+        mpp.new_get_poms_timed(75, 7000)
         mpp.pivot_right(-3, 60)
         msleep(200)
 

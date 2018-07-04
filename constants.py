@@ -60,8 +60,11 @@ elif isYellow:
     # Servo Positions
     armUp = 1110
     armDown = 1850
-    wheelIn = 1335
+    wheelIn = 1320
     wheelOut = 1900
+    pipeBin = 560
+    pipeStraight = 1100   #1100
+    pipeOut = 50
 elif isBlue:
     armUp = 1580
     armDown = 1010
