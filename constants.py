@@ -9,7 +9,7 @@ YELLOW_CLONE_SWITCH = 8
 RIGHT_BUTTON = 13
 
 isGreen = w.digital(GREEN_CLONE_SWITCH)
-isYellow =  True
+isYellow =  False
 '''w.digital(YELLOW_CLONE_SWITCH)'''
 isBlue = not isGreen and not isYellow
 
@@ -17,7 +17,8 @@ isBlue = not isGreen and not isYellow
 LMOTOR = 3
 RMOTOR = 0
 if isBlue:
-    DATEMOTOR = 2
+    DATEMOTOR1 = 1
+    DATEMOTOR2 = 2
 elif isGreen:
     DATEMOTOR = 1
 elif isYellow:
@@ -30,8 +31,7 @@ ET = 0
 # Servos
 servoArmBin = 0
 servoPipeWheel = 2
-if isYellow:
-    servoDateWheel = 3
+servoDateWheel = 3
 
 # camera channels
 ORANGE = 0
@@ -69,5 +69,7 @@ elif isBlue:
     armUp = 1580
     armDown = 1010
     pipeBin = 1500
+    wheelIn = 1320
+    wheelOut = 1900
     pipeStraight = 2000
     pipeOut = 890

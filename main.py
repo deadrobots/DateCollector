@@ -10,6 +10,10 @@ import motorsPlusPlus as mpp
 
 def main():
     print ("Running code")
+    # mpp.drive_speed(24,100)
+    # u.waitForButton()
+    # mpp.drive_speed(-24,100)
+    # u.DEBUG()
     act.init()
     act.driveOutStartBox()
     act.driveFirstTrees()
