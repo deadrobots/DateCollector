@@ -120,7 +120,7 @@ def driveUntilTree():
             print(analog(c.ET))
         print("Saw Tree")
         u.move_servo(c.servoArmBin, c.armDown)
-        mpp.drive_speed(0.2, 60) #was 1.9 inches
+        mpp.drive_speed(0, 60) #was .2 inches
     elif c.isGreen:
         mpp.pivot_right(-8, 25)#-8
         mpp.drive_speed(4, 50)
@@ -185,6 +185,8 @@ def driveFirstTrees():
     #mpp.pivot_right(9, 60)
     u.move_servo(c.servoDateWheel, c.wheelOut)
     mpp.drive_speed(3, 70)
+    mpp.pivot_left(-6, 60)
+
 
 ###################EXPERIMENTAL FUNCTIONS########################
 def leaveBinAndDriveToNext():
@@ -268,6 +270,12 @@ def grabFirstPoms():
     mpp.new_get_poms_timed(75, 7000)
     mpp.pivot_right(-3, 60)
     msleep(200)
+
+def getSecondDateBin():
+    mpp.drive_speed(4, 50)
+    u.move_servo(c.servoArmBin, c.armDown)
+    mpp.drive_speed(3, 50)
+    u.move_servo(c.servoPipeWheel, c.pipeBin)
 
 def driveToNextTrees():
     #Uses an amazingly smooth line follow to go from one set of trees to the other

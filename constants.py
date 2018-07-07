@@ -20,7 +20,7 @@ if isBlue:
     DATEMOTOR1 = 1
     DATEMOTOR2 = 2
 elif isGreen:
-    DATEMOTOR = 1
+    DATEMOTOR = 2  #was 1
 elif isYellow:
     DATEMOTOR1 = 1
     DATEMOTOR2 = 2
