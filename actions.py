@@ -306,6 +306,7 @@ def driveToNextTrees():
 
 def driveToNextTrees2():
     print("Driving to Next Set of Trees")
+    u.waitForButton()
     u.move_servo(c.servoArmBin, c.armUp, 25)
     mpp.drive_speed(-4.2, 60)
     if c.isBlue:
@@ -316,6 +317,8 @@ def driveToNextTrees2():
         msleep(300)
         mpp.rotate(89, 50)
         msleep(300)
+        print("about to move servo")
+        u.waitForButton()
         u.move_servo(c.servoPipeWheel, c.pipeStraight)
         u.move_servo(c.servoPipeWheel, c.pipeBin)
         u.move_servo(c.servoPipeWheel, c.pipeStraight)
