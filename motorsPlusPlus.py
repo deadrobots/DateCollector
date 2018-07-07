@@ -275,8 +275,8 @@ def get_poms_timed (speed, time):
 
 def new_get_poms_timed (speed, time):
     for x in range(3):
-        motor(c.DATEMOTOR1, speed-28)
-        motor(c.DATEMOTOR2, speed)
+        motor(c.DATEMOTOR2, speed) #speed was -28
+        motor(c.DATEMOTOR1, speed)
         msleep(time/3)
         motor(c.DATEMOTOR1, 0)
         motor(c.DATEMOTOR2, 0)
