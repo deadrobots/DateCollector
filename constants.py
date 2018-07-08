@@ -29,7 +29,7 @@ elif isYellow:
 ET = 0
 
 # Servos
-servoArmBin = 0
+servoArmBin = 1
 servoPipeWheel = 2
 servoDateWheel = 3
 
@@ -45,7 +45,7 @@ ORANGE_AREA = 500
 RGY_AREA = 100
 
 # Tophat
-LEFT_TOPHAT = 5
+LEFT_TOPHAT = 1
 RIGHT_TOPHAT = 4
 onBlack = 2000
 
@@ -66,8 +66,8 @@ elif isYellow:
     pipeStraight = 1100   #1100
     pipeOut = 50
 elif isBlue:
-    armUp = 1580
-    armDown = 1010
+    armUp = 1500
+    armDown = 925
     pipeBin = 1500
     wheelIn = 1480
     wheelOut = 1950

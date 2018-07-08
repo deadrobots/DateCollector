@@ -10,19 +10,13 @@ import motorsPlusPlus as mpp
 
 def main():
     print ("Running code")
-    # mpp.drive_speed(20, 50)
-    # u.DEBUG()
-    # mpp.drive_speed(24,100)
-    # u.waitForButton()
-    # mpp.drive_speed(-24,100)
-    # u.DEBUG()
     act.init()
     act.driveOutStartBox()
     act.driveFirstTrees()
     act.getSecondDateBin()
     act.grabFirstPoms() #this pulls poms on the first 2 trees
+    #Work on the driveToNextTrees2 function
     act.driveToNextTrees2()
-    u.waitForButton()
     #act.driveToNextTrees()
     act.driveFinalThreeTrees()
     u.DEBUG()
