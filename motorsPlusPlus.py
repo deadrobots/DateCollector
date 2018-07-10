@@ -40,7 +40,7 @@ if isBlue:
     WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
     INCHES_TO_TICKS = 219.26
     lAdjust = 1  # adjust left wheel counter to fix drift
-    lAdjustForward = 1.01 #Higher number makes robot go left.
+    lAdjustForward = .96 #Higher number makes robot go left.
     lAdjustBack = 0.98 #Higher number makes robot go BACKWARDS and left.
 elif isYellow:
     WHEEL_DISTANCE = 5  # 205 - 4.25  # Distance between the two wheels
