@@ -84,21 +84,21 @@ def driveOutStartBox():
     #     mpp.rotate(-28, 50) #was -30
     #     msleep(1000)
     # elif c.isYellow:
-    mpp.drive_speed(4, 90)
+    mpp.drive_speed(3.9, 90)
     msleep(200)
     mpp.rotate(-84.8, 70)
     msleep(200)
-    mpp.drive_speed(-27.3, 90)  # 27.2
+    mpp.drive_speed(-27.2, 90)  # 27.3
     u.move_servo(c.servoPipeWheel, c.pipeStraight)
     u.move_servo(c.servoDateWheel, c.wheelOut)
     mpp.drive_speed(.45, 70)
     msleep(200)
-    mpp.rotate(88, 70)
+    mpp.rotate(90, 70) #88
     msleep(200)
     mpp.drive_speed(-7.5, 80)  # 5
     mpp.drive_speed(3, 80)
     msleep(200)
-    mpp.rotate(-21, 70)  # was -23
+    mpp.rotate(-19, 70)  # was -21
     msleep(200)
     '''
     mpp.drive_speed(3.5, 80)
@@ -183,8 +183,8 @@ def driveFirstTrees():
     #mpp.drive_speed(4, 60)
     #mpp.pivot_right(9, 60)
     u.move_servo(c.servoDateWheel, c.wheelOut)
-    mpp.drive_speed(3, 70)
-    mpp.pivot_left(-6, 60)
+    mpp.drive_speed(3.2, 70) #3
+    mpp.pivot_right(9, 60)
 
 def getSecondDateBin():
     mpp.drive_speed(4, 50)
@@ -228,7 +228,7 @@ def grabFirstPoms():
     #mpp.drive_speed(.5, 60)
     mpp.pivot_right(7, 60)
     u.move_servo(c.servoDateWheel, c.wheelIn + 100, 20)
-    u.move_servo(c.servoDateWheel, c.wheelIn, 5)
+    u.move_servo(c.servoDateWheel, c.wheelIn - 50, 5)
     mpp.new_get_poms_timed(70, 7500)
     msleep(200)
     mpp.drive_speed(2, 60)
@@ -302,7 +302,7 @@ def driveToNextTrees2():
         elif analog(c.RIGHT_TOPHAT) < 1000:
             while analog(c.RIGHT_TOPHAT) < 1000:
                 mpp.rotate(-1, 30)
-        msleep(500)
+        #msleep(500)
         mpp.rotate(-90, 50)
         u.move_servo(c.servoPipeWheel, c.pipeOut, 30)
         mpp.drive_speed(-10.6, 80)
@@ -329,12 +329,12 @@ def driveToNextTrees2():
         mpp.pivot_right(10, 30)
         mpp.drive_speed(2, 80)
         u.move_servo(c.servoPipeWheel, c.pipeBin)
-        mpp.rotate(-13, 60)
+        mpp.rotate(-20, 60) #-13
         mpp.drive_speed(-6.5, 70)
         msleep(200)
         mpp.pivot_right(18, 20)
-        mpp.drive_speed(.2, 50)
-        mpp.pivot_right(3, 50)
+        #mpp.drive_speed(.2, 50)
+        #mpp.pivot_right(3, 50)
         mpp.new_get_poms_timed(70, 8000)
     elif c.isGreen:
         mpp.rotate(-92, 50)
@@ -378,13 +378,13 @@ def driveFinalThreeTrees():
         mpp.drive_timed(-75,-100,1.5)
         u.move_servo(c.servoArmBin, c.armDown)
         u.waitForButton()
-        mpp.get_poms_timed(50, 7000)
+        mpp.new_get_poms_timed(50, 7000)
         msleep(1000)
         driveUntilTree()
-        mpp.get_poms_timed(50, 7000)
+        mpp.new_get_poms_timed(50, 7000)
         msleep(1000)
         driveUntilTree()
-        mpp.get_poms_timed(50, 7000)
+        mpp.new_get_poms_timed(50, 7000)
         msleep(1000)
     if c.isGreen:
         mpp.drive_speed(-3, 40) #was -9.5
@@ -396,19 +396,19 @@ def driveFinalThreeTrees():
         mpp.pivot_right(17, 25)
         mpp.drive_speed(.2, 50)
         u.waitForButton()
-        mpp.get_poms_timed(50, 9300)
+        mpp.new_get_poms_timed(50, 9300)
         msleep(1000)
         u.DEBUG()
         driveUntilTree()
         mpp.drive_speed(.2, 50)
-        mpp.get_poms_timed(50, 9300)
+        mpp.new_get_poms_timed(50, 9300)
         msleep(1000)
         mpp.pivot_right(-8, 25)  # -8
         mpp.drive_speed(4, 50)
         mpp.pivot_right(8, 25)
         mpp.drive_speed(9.5, 50)
         mpp.pivot_right(4, 25)
-        mpp.get_poms_timed(50, 9300)
+        mpp.new_get_poms_timed(50, 9300)
     if c.isBlue:
         u.move_servo(c.servoArmBin, c.armDown)
         u.move_servo(c.servoDateWheel, c.wheelOut)

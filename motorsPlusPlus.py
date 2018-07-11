@@ -275,13 +275,25 @@ def get_poms_timed (speed, time):
 
 def new_get_poms_timed (speed, time):
     for x in range(3):
-        motor(c.DATEMOTOR2, speed) #speed was -28
-        motor(c.DATEMOTOR1, speed)
-        msleep(time/3)
+        get_poms_wiggle(speed, time / 3)
         motor(c.DATEMOTOR1, 0)
         motor(c.DATEMOTOR2, 0)
         u.move_servo(c.servoDateWheel, c.wheelIn+300, 20)
         u.move_servo(c.servoDateWheel, c.wheelIn, 20)
+    motor(c.LMOTOR, 0)
+    motor(c.RMOTOR, 0)
+
+
+def get_poms_wiggle(speed, time):
+    motor(c.DATEMOTOR2, speed)
+    motor(c.DATEMOTOR1, speed)
+    for x in range(3): #6
+        u.move_servo(c.servoDateWheel, c.wheelIn + 50, 1)
+        msleep(time/20) #10
+        u.move_servo(c.servoDateWheel, c.wheelIn, 1)
+        msleep(time/20)
+    motor(c.DATEMOTOR1, 0)
+    motor(c.DATEMOTOR2, 0)
     motor(c.LMOTOR, 0)
     motor(c.RMOTOR, 0)
 

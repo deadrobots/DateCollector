@@ -13,6 +13,7 @@ def main():
     #mpp.drive_speed(20, 100)
     #u.waitForButton()
     #mpp.drive_speed(-20, 100)
+    # u.DEBUG()
     act.init()
     act.driveOutStartBox()
     act.driveFirstTrees()
