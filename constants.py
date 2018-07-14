@@ -70,7 +70,7 @@ elif isYellow:
     pipeOut = 50
 elif isBlue:
     armUp = 1500
-    armDown = 925
+    armDown = 900
     pipeBin = 1500
     wheelIn = 1460
     wheelOut = 1950

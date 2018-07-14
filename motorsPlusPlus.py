@@ -29,6 +29,7 @@ from wallaby import seconds
 from wallaby import set_servo_position
 import constants as c
 import utils as u
+import motorsPlusPlus as mpp
 
 
 # Drive Constants
@@ -40,8 +41,8 @@ if isBlue:
     WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
     INCHES_TO_TICKS = 208.8
     lAdjust = 1  # adjust left wheel counter to fix drift
-    lAdjustForward = .905 #Higher number makes robot go left.
-    lAdjustBack = 0.965 #Higher number makes robot go BACKWARDS and left.
+    lAdjustForward = .91 #Higher number makes robot go left.
+    lAdjustBack = 1 #Higher number makes robot go BACKWARDS and left.
 elif isYellow:
     WHEEL_DISTANCE = 5  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 162
@@ -280,16 +281,19 @@ def new_get_poms_timed (speed, time):
         motor(c.DATEMOTOR2, 0)
         u.move_servo(c.servoDateWheel, c.wheelIn+300, 20)
         u.move_servo(c.servoDateWheel, c.wheelIn, 20)
+        pivot_right(1, 60)
+        pivot_left(.5, 60)
+        mpp.drive_speed(-.25, 60)
     motor(c.LMOTOR, 0)
     motor(c.RMOTOR, 0)
 
 
 def get_poms_wiggle(speed, time):
-    motor(c.DATEMOTOR2, speed)
+    motor(c.DATEMOTOR2, speed-20)
     motor(c.DATEMOTOR1, speed)
     for x in range(3): #6
-        u.move_servo_timed(c.servoDateWheel, c.wheelIn, time/6)
-        u.move_servo_timed(c.servoDateWheel, c.wheelIn - 50, time/6)
+        u.move_servo_timed(c.servoDateWheel, c.wheelIn + 45, time/6)
+        u.move_servo_timed(c.servoDateWheel, c.wheelIn - 5, time/6)
     motor(c.DATEMOTOR1, 0)
     motor(c.DATEMOTOR2, 0)
     motor(c.LMOTOR, 0)
