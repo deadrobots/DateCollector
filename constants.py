@@ -20,7 +20,8 @@ if isBlue:
     DATEMOTOR1 = 1
     DATEMOTOR2 = 2
 elif isGreen:
-    DATEMOTOR = 2  #was 1
+    DATEMOTOR1 = 2  #was 1
+    DATEMOTOR2 =  1
 elif isYellow:
     DATEMOTOR1 = 1
     DATEMOTOR2 = 2
@@ -56,6 +57,8 @@ if isGreen:
     # Servo Positions
     armUp = 530
     armDown = 1100
+    wheelOut = 1900
+    wheelIn = 1320
 elif isYellow:
     # Servo Positions
     armUp = 1110

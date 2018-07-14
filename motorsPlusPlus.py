@@ -38,10 +38,10 @@ import utils as u
 
 if isBlue:
     WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
-    INCHES_TO_TICKS = 219.26
+    INCHES_TO_TICKS = 208.8
     lAdjust = 1  # adjust left wheel counter to fix drift
-    lAdjustForward = .92 #Higher number makes robot go left.
-    lAdjustBack = 0.98 #Higher number makes robot go BACKWARDS and left.
+    lAdjustForward = .905 #Higher number makes robot go left.
+    lAdjustBack = 0.965 #Higher number makes robot go BACKWARDS and left.
 elif isYellow:
     WHEEL_DISTANCE = 5  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 162
@@ -288,10 +288,8 @@ def get_poms_wiggle(speed, time):
     motor(c.DATEMOTOR2, speed)
     motor(c.DATEMOTOR1, speed)
     for x in range(3): #6
-        u.move_servo(c.servoDateWheel, c.wheelIn + 50, 1)
-        msleep(time/20) #10
-        u.move_servo(c.servoDateWheel, c.wheelIn, 1)
-        msleep(time/20)
+        u.move_servo_timed(c.servoDateWheel, c.wheelIn, time/6)
+        u.move_servo_timed(c.servoDateWheel, c.wheelIn - 50, time/6)
     motor(c.DATEMOTOR1, 0)
     motor(c.DATEMOTOR2, 0)
     motor(c.LMOTOR, 0)

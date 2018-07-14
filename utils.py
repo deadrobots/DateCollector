@@ -153,8 +153,14 @@ def smoothLineFollowLeft(time, speed):
     sec = seconds() + time
     while seconds() < sec:
         num = ((w.analog(4) - 1500) / 120)
-        d.driveTimed(speed-num, speed+num, 20)
-        msleep(10)
+        d.driveTimed(speed-num, speed+num, 10)
+
+def smoothLineFollowLeftCondition(speed):
+    #Max speed is 80
+    #Proportional adjustment LF
+    while w.analog(c.LEFT_TOPHAT) < 2000:
+        num = ((w.analog(4) - 1500) / 120)
+        d.driveTimed(speed-num, speed+num, 10)
 
 
 def timedLineFollowLeftBack(time):  # follows on starboard side
