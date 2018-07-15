@@ -41,8 +41,8 @@ if isBlue:
     WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
     INCHES_TO_TICKS = 208.8
     lAdjust = 1  # adjust left wheel counter to fix drift
-    lAdjustForward = .91 #Higher number makes robot go left.
-    lAdjustBack = 1 #Higher number makes robot go BACKWARDS and left.
+    lAdjustForward = .9 #Higher number makes robot go left.
+    lAdjustBack = 0.98 #Higher number makes robot go BACKWARDS and left.
 elif isYellow:
     WHEEL_DISTANCE = 5  # 205 - 4.25  # Distance between the two wheels
     INCHES_TO_TICKS = 162
@@ -52,8 +52,8 @@ elif isGreen:
     WHEEL_DISTANCE = 5.25  # 205 - 4.25  # Distance between the two wheel
     INCHES_TO_TICKS = 211.7
     lAdjust = 1.00  # adjust left wheel counter to fix drift
-    lAdjustForward = 1.01  # 1.025
-    lAdjustBack = 1.00
+    lAdjustForward = 0.99  # 1.025
+    lAdjustBack = 0.95
 
 
 #Motor Control
@@ -136,7 +136,7 @@ def arc_radius(angle, turnRadius, speed):  # Turns the robot "angle" degrees by 
 
 
 def drive_speed(inches, speed):  # Drives an exact distance in inches
-    print ("driving exact distance")
+    #print ("driving exact distance")
     global lAdjust
     if inches < 0:
         speed = -speed
@@ -154,16 +154,16 @@ def drive_speed(inches, speed):  # Drives an exact distance in inches
         if _left_ticks() > _right_ticks():
             _drive(int(speed / 1.3), speed)
     freeze_motors()
-    print (ticks)
-    print (get_motor_position_counter(RMOTOR))
+    #print (ticks)
+    #print (get_motor_position_counter(RMOTOR))
 
 
 def drive_timed(lmotor, rmotor, time):
-    print ("driving timed")
+    #print ("driving timed")
     _clear_ticks()
     end = seconds() + time
     if lmotor == 0 or rmotor == 0:
-        print ("please use pivot instead!")
+        #print ("please use pivot instead!")
         exit()
 
     elif abs(rmotor) <= abs(lmotor):
@@ -182,7 +182,7 @@ def drive_timed(lmotor, rmotor, time):
         if int(_left_ticks() / mod) > int(_right_ticks() / mod):
             _drive(int(newLeftSpeed / 1.3), newRightSpeed)
     freeze_motors()
-    print (get_motor_position_counter(RMOTOR))
+    #print (get_motor_position_counter(RMOTOR))
     ao()
 
 
@@ -212,23 +212,23 @@ def drive_condition(lmotor, rmotor, testFunction,
     print (get_motor_position_counter(RMOTOR))
 
 def rotate(deg, speed):  # Rotates by using both wheels equally.
-    print("rotating")
+    #print("rotating")
     if deg < 0:
         speed = -speed
         deg = -deg
     angle = deg / 360.0
     circ = pi * WHEEL_DISTANCE
     inches = angle * circ
-    print (circ)
-    print (inches)
+    #print (circ)
+    #print (inches)
     ticks = int(INCHES_TO_TICKS * inches)
     _clear_ticks()
     _drive(-speed, speed)
     while _right_ticks() <= ticks:
         pass
     freeze_motors()
-    print (_right_ticks())
-    print (_left_ticks())
+    #print (_right_ticks())
+    #print (_left_ticks())
     #print (get_motor_position_counter(LMOTOR))  #trying to compare values for consistent rotation
 
 
@@ -299,7 +299,7 @@ def get_poms_wiggle(speed, time):
     motor(c.LMOTOR, 0)
     motor(c.RMOTOR, 0)
 
-def calibrate_drive ():
+def calibrate_drive():
     #Used to test how straight the robot drives forward and backward
     print("Calibration Drive")
     if (c.isBlue):

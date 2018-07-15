@@ -9,20 +9,43 @@ import drive as d
 import motorsPlusPlus as mpp
 
 def main():
+    #########################HEY READ THIS IF UR NOT AJ OR KAT :)###############################
+    #So we have both head 2 head and seeding fairly consistent for blue bot
+    #We've gotten 4800 max for seeding and 2100 max for head 2 head!!!
+    #The next step is to work on the clone (seeding and head 2 head)
+    #We've started working on seeding for clone (Green Bot) but we've only finished the first tree
+    #So work on that  ^^^^^^^^^^^^^^^
+    #We also need to work on Head 2 Head for clone
+    #Good Luck!
     print ("Running code")
-    # mpp.drive_speed(20, 100)
-    # u.waitForButton()
-    # mpp.drive_speed(-20, 100)
+    #Calibration drive
+    # mpp.calibrate_drive()
     # u.DEBUG()
     act.init()
-    act.driveOutStartBox()
-    act.driveFirstTrees()
-    act.getSecondDateBin()
-    act.grabFirstPoms() #this pulls poms on the first 2 trees
-    #Work on the driveToNextTrees2 function
-    act.driveToNextTrees2()
-    #act.driveToNextTrees()
-    act.driveFinalThreeTrees()
+    if u.wait_for_selection():
+        #Seeding
+        c.startTime = seconds()
+        shut_down_in(119.5)
+        print("Running Seeding")
+        act.driveOutStartBox()
+        act.driveFirstTrees()
+        act.getSecondDateBin()
+        act.grabFirstPoms()
+        u.DEBUG()
+        act.driveToNextTrees()
+        act.getThirdDateBin()
+        act.driveFinalThreeTrees()
+    else:
+        #Head 2 Head
+        c.startTime = seconds()
+        shut_down_in(119.5)
+        print("Running Head 2 Head")
+        act.driveOutStartBox()
+        act.driveFirstTreesH2H()
+        act.grabFirstPoms()
+        act.driveToNextTrees()
+        act.getThirdDateBinH2H()
+        act.grabFirstPoms()
     u.DEBUG()
 
 if __name__ == "__main__":

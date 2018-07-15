@@ -180,10 +180,19 @@ def crossBlackFront():
         pass
     ao()
 
-
-def crossBlackBack():
-    while not onBlackBack():  # wait for black
-        pass
-    while onBlackBack():  # wait for white
-        pass
-    ao()
+def wait_for_selection(force=False):    #asks for prompt twice... FIX THIS
+    #asks for response; used to determine running seeding or head-to-head code
+    seeding1= False
+    if c.ALLOW_BUTTON_WAIT or force:
+        print "Press Left Button for Seeding...\nPress Right Button for Head-to-Head"
+        while not w.right_button():
+            if w.left_button():
+                seeding1 = True
+                print "Pressed Left"
+                msleep(1000)
+                return seeding1
+            pass
+        msleep(1)
+        print "Pressed Right"
+        msleep(1000)
+        return seeding1

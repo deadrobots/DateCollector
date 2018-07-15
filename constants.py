@@ -1,5 +1,4 @@
 import wallaby as w
-
 # Time
 startTime = -1
 
@@ -7,6 +6,7 @@ startTime = -1
 GREEN_CLONE_SWITCH = 9
 YELLOW_CLONE_SWITCH = 8
 RIGHT_BUTTON = 13
+ALLOW_BUTTON_WAIT = True
 
 isGreen = w.digital(GREEN_CLONE_SWITCH)
 isYellow =  False
@@ -55,10 +55,13 @@ onTree = 2000
 
 if isGreen:
     # Servo Positions
-    armUp = 530
-    armDown = 1100
-    wheelOut = 1900
-    wheelIn = 1320
+    armUp = 1000
+    armDown = 400
+    wheelOut = 2047
+    wheelIn = 1560
+    pipeStraight = 2047
+    pipeOut = 890
+    pipeBin = 1500
 elif isYellow:
     # Servo Positions
     armUp = 1110
