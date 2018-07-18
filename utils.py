@@ -147,20 +147,21 @@ def timedLineFollowLeftSmooth(time):
             d.driveTimed(40, 20, 20)
         msleep(10)
 
+
 def smoothLineFollowLeft(time, speed):
     #Max speed is 80
     #Proportional adjustment LF
     sec = seconds() + time
     while seconds() < sec:
-        num = ((w.analog(4) - 1500) / 120)
+        num = ((w.analog(4) - 1500) / 75)
         d.driveTimed(speed-num, speed+num, 10)
 
+
 def smoothLineFollowLeftCondition(speed):
-    #Max speed is 80
     #Proportional adjustment LF
     sec = seconds() + 7
     while w.analog(c.LEFT_TOPHAT) < 2000 and seconds()<sec:
-        num = ((w.analog(4) - 1500) / 60)
+        num = ((w.analog(4) - 1500) / 75)
         d.driveTimed(speed-num, speed+num, 10)
 
 

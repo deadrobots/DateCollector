@@ -58,10 +58,10 @@ if isGreen:
     armUp = 1000
     armDown = 400
     wheelOut = 2047
-    wheelIn = 1560
+    wheelIn = 1600 #1560
     pipeStraight = 2047
     pipeOut = 890
-    pipeBin = 1500
+    pipeBin = 1600 #1500
 elif isYellow:
     # Servo Positions
     armUp = 1110
@@ -75,7 +75,7 @@ elif isBlue:
     armUp = 1500
     armDown = 900
     pipeBin = 1500
-    wheelIn = 1460
+    wheelIn = 1560 #1460
     wheelOut = 1950
     pipeStraight = 2047
     pipeOut = 890
