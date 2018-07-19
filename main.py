@@ -19,8 +19,8 @@ def main():
     #Good Luck!
     print ("Running code")
     #Calibration drive
-    #mpp.calibrate_drive()
-    #u.DEBUG()
+    # mpp.calibrate_drive()
+    # u.DEBUG()
     act.init()
     if u.wait_for_selection():
         #Seeding
