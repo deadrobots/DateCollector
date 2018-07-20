@@ -53,7 +53,7 @@ def driveOutStartBox():
         u.move_servo(c.servoDateWheel, c.wheelOut, 20)
         mpp.drive_speed(.7, 80) #was 0.45
         msleep(100)
-        mpp.rotate(95, 80) #89#99
+        mpp.rotate(92, 80) #95
         msleep(100)
         mpp.drive_speed(-7.5, 90)  # 5
         mpp.drive_speed(3, 90)
@@ -140,7 +140,7 @@ def grabFirstPoms():
     mpp.drive_speed(5, 85) #2.8
     driveUntilTree()
     msleep(100)
-    mpp.drive_speed(-0.075, 80)
+    mpp.drive_speed(-0.2, 80)
     mpp.pivot_right(6, 80) #8
     u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
     u.move_servo(c.servoDateWheel, c.wheelIn - 100, 10)
@@ -154,8 +154,34 @@ def grabFirstPoms():
     driveUntilTree()
     mpp.drive_speed(0.6, 60)
     mpp.pivot_right(-4, 80)
-    mpp.drive_speed(-0.5, 80)
+    mpp.drive_speed(-0.7, 80) #was -0.5
     mpp.pivot_right(6, 80) #was 6
+    u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
+    u.move_servo(c.servoDateWheel, c.wheelIn - 50, 10)
+    mpp.new_get_poms_timed(100, 5000)
+    mpp.pivot_right(-4, 80)
+
+def grabFirstPomsH2H():
+    print "grabFirstPoms"
+    mpp.drive_speed(5, 85) #2.8
+    driveUntilTree()
+    msleep(100)
+    mpp.drive_speed(-0.2, 80) #was -0.075
+    mpp.pivot_right(6, 80) #8
+    u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
+    u.move_servo(c.servoDateWheel, c.wheelIn - 100, 10)
+    mpp.new_get_poms_timed(100, 5000)
+    msleep(100)
+    u.move_servo(c.servoDateWheel, c.wheelOut, 20)
+    mpp.drive_speed(2, 80)
+    mpp.pivot_right(4, 80)
+    u.move_servo(c.servoPipeWheel, c.pipeBin, 30)
+    mpp.drive_speed(6, 85)
+    driveUntilTree()
+    mpp.drive_speed(0.4, 60) #was 0.6
+    mpp.pivot_right(-4, 80)
+    mpp.drive_speed(-0.5, 80)
+    mpp.pivot_right(6, 80)
     u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
     u.move_servo(c.servoDateWheel, c.wheelIn - 50, 10)
     mpp.new_get_poms_timed(100, 5000)
@@ -238,12 +264,13 @@ def getThirdDateBinH2H():
         mpp.pivot_right(6, 75)
         mpp.drive_speed(1.5, 80)
         mpp.rotate(-15, 80) #-20
-    mpp.pivot_right(15, 65)
-    u.move_servo(c.servoPipeWheel, c.pipeBin, 25)
-    print "Saw Tree"
-    mpp.pivot_right(6, 75)
-    mpp.drive_speed(1.5, 80)
-    mpp.rotate(-20, 80)  # -18
+    else:
+        mpp.pivot_right(15, 65)
+        u.move_servo(c.servoPipeWheel, c.pipeBin, 25)
+        print "Saw Tree"
+        mpp.pivot_right(6, 75)
+        mpp.drive_speed(1.5, 80)
+        mpp.rotate(-20, 80)  # -18
     mpp.drive_speed(-5.5, 80) #-4.5
     mpp.pivot_left(-25, 80)
     msleep(100)
@@ -267,9 +294,9 @@ def driveFinalThreeTrees():
     u.move_servo(c.servoArmBin, c.armDown, 25)
     u.move_servo(c.servoPipeWheel, c.pipeBin, 25)
     mpp.pivot_right(13, 85)
-    mpp.drive_speed(5, 85)
+    mpp.drive_speed(8, 85)
     driveUntilTree()
-    mpp.drive_speed(.5, 70) #0.3
+    # mpp.drive_speed(.3, 70) #0.5
     u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
     u.move_servo(c.servoDateWheel, c.wheelIn + 70, 10)
     mpp.new_get_poms_timed(100, 7000)
@@ -282,17 +309,16 @@ def driveFinalThreeTrees():
     mpp.drive_speed(1, 80)
     mpp.pivot_right(10, 80)
     mpp.drive_speed(1.5, 80)
+    mpp.pivot_right(6, 70)
     #mpp.pivot_left(-7, 70)
-    #mpp.drive_speed(3, 60)
-    #mpp.drive_speed(2.5, 60)
     mpp.drive_speed(1.5, 90)
     u.move_servo(c.servoPipeWheel, c.pipeBin, 25)
-    mpp.pivot_right(16, 80)
     mpp.drive_speed(1, 85)
+    mpp.pivot_right(16, 80)
     u.move_servo(c.servoArmBin, c.armDown, 25)
-    mpp.drive_speed(3, 85)
+    mpp.drive_speed(8, 85)
     driveUntilTree()
-    mpp.drive_speed(.2, 70)
+    # mpp.drive_speed(.2, 70)
     u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
     u.move_servo(c.servoDateWheel, c.wheelIn + 50, 10)
     mpp.new_get_poms_timed(100, 8000)

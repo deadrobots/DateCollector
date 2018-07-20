@@ -41,10 +41,10 @@ def main():
         print("Running Head 2 Head")
         act.driveOutStartBox()
         act.driveFirstTreesH2H()
-        act.grabFirstPoms()
+        act.grabFirstPomsH2H()
         act.driveToNextTrees()
         act.getThirdDateBinH2H()
-        act.grabFirstPoms()
+        act.grabFirstPomsH2H()
     u.DEBUG()
 
 if __name__ == "__main__":
