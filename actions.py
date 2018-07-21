@@ -48,7 +48,7 @@ def driveOutStartBox():
         msleep(200)
         mpp.rotate(-89, 60) #-85.8
         msleep(200)
-        mpp.drive_speed(-28.3, 100)  # 28.5
+        mpp.drive_speed(-27, 100)  # 28.3
         u.move_servo(c.servoPipeWheel, c.pipeStraight, 20)
         u.move_servo(c.servoDateWheel, c.wheelOut, 20)
         mpp.drive_speed(.7, 80) #was 0.45
@@ -58,7 +58,7 @@ def driveOutStartBox():
         mpp.drive_speed(-7.5, 90)  # 5
         mpp.drive_speed(3, 90)
         msleep(100)
-        mpp.rotate(-23, 80)  # was -21
+        mpp.rotate(-20, 80)  # was -23
         msleep(100)
     elif c.isGreen:
         mpp.drive_speed(-1.5, 70)
@@ -178,7 +178,7 @@ def grabFirstPomsH2H():
     u.move_servo(c.servoPipeWheel, c.pipeBin, 30)
     mpp.drive_speed(6, 85)
     driveUntilTree()
-    mpp.drive_speed(0.4, 60) #was 0.6
+    mpp.drive_speed(0.2, 60) #was 0.4
     mpp.pivot_right(-4, 80)
     mpp.drive_speed(-0.5, 80)
     mpp.pivot_right(6, 80)
@@ -195,7 +195,7 @@ def driveToNextTrees():
     mpp.drive_speed(-7, 90)
     mpp.drive_speed(17, 100)  # 14
     msleep(100)
-    mpp.rotate(95, 80) #89
+    mpp.rotate(92, 80) #95
     u.move_servo(c.servoPipeWheel, c.pipeOut, 40)
     u.smoothLineFollowLeftCondition(85)
     u.smoothLineFollowLeft(3.3, 85)
@@ -211,10 +211,10 @@ def driveToNextTrees():
     u.move_servo(c.servoPipeWheel, 200, 25)
     mpp.rotate(93, 70)
     u.move_servo(c.servoPipeWheel, c.pipeOut, 25)
-    mpp.drive_speed(6, 85) #7
+    mpp.drive_speed(4, 85) #6
     mpp.drive_speed(-1.5, 85) #-3
     u.move_servo(c.servoPipeWheel, 200, 25)
-    mpp.rotate(-92, 85)
+    mpp.rotate(-88, 85) #-92
     mpp.drive_speed(-10.5, 100)
 
 def getThirdDateBin():
@@ -247,13 +247,13 @@ def getThirdDateBin():
 def getThirdDateBinH2H():
     mpp.drive_speed(5.8, 100)
     u.move_servo(c.servoPipeWheel, c.pipeStraight, 25)
-    mpp.rotate(100, 75) #95
-    mpp.drive_speed(8, 80) #was 6
+    mpp.rotate(93, 75) #95
+    mpp.drive_speed(6, 80) #was 8
     u.move_servo(c.servoPipeWheel, 900, 20)
-    mpp.drive_timed(-90, -60, 2) #was -100, -60
+    mpp.drive_timed(-95, -60, 2) #was -90, -60
     tim = seconds()
     while analog(c.ET) < (c.onTree - 500) and seconds()-tim < 2.8:
-        mpp.drive_timed(-90, -60, .05) #was -100, -60
+        mpp.drive_timed(-95, -60, .05) #was -90, -60
     if seconds()-tim > 2.8:
         print("Fourth tree timeout")
         mpp.rotate(16, 80)
