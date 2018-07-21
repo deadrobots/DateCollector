@@ -39,7 +39,7 @@ def main():
         c.startTime = seconds()
         shut_down_in(119.5)
         print("Running Head 2 Head")
-        act.driveOutStartBox()
+        act.driveOutStartBoxH2H()
         act.driveFirstTreesH2H()
         act.grabFirstPomsH2H()
         act.driveToNextTrees()

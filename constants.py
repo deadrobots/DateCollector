@@ -28,6 +28,7 @@ elif isYellow:
 
 #Analog Ports
 ET = 0
+LightSensor = 5
 
 # Servos
 servoArmBin = 1

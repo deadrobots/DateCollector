@@ -42,42 +42,44 @@ def startTest():
 def driveOutStartBox():
     #Starts from the start box, drives to first date tree and positions itself to collect
     print("Drive Out of Start Box")
-    if c.isBlue:
-        mpp.drive_speed(-1.5, 70)
-        mpp.drive_speed(3.9, 100)
-        msleep(200)
-        mpp.rotate(-89, 60) #-85.8
-        msleep(200)
-        mpp.drive_speed(-27, 100)  # 28.3
-        u.move_servo(c.servoPipeWheel, c.pipeStraight, 20)
-        u.move_servo(c.servoDateWheel, c.wheelOut, 20)
-        mpp.drive_speed(.7, 80) #was 0.45
-        msleep(100)
-        mpp.rotate(92, 80) #95
-        msleep(100)
-        mpp.drive_speed(-7.5, 90)  # 5
-        mpp.drive_speed(3, 90)
-        msleep(100)
-        mpp.rotate(-20, 80)  # was -23
-        msleep(100)
-    elif c.isGreen:
-        mpp.drive_speed(-1.5, 70)
-        mpp.drive_speed(3.9, 100)
-        msleep(200)
-        mpp.rotate(-89, 80)  # -89
-        msleep(200)
-        mpp.drive_speed(-30, 100)  # 28.3
-        u.move_servo(c.servoPipeWheel, c.pipeStraight, 20)
-        u.move_servo(c.servoDateWheel, c.wheelOut, 20)
-        mpp.drive_speed(1.6, 80)  # was 0.7
-        msleep(100)
-        mpp.rotate(97, 80)  #95
-        msleep(100)
-        mpp.drive_speed(-7.5, 90)  # 5
-        mpp.drive_speed(3, 90)
-        msleep(100)
-        mpp.rotate(-23, 80)  # was -21
-        msleep(100)
+    mpp.drive_speed(-1.5, 70)
+    mpp.drive_speed(3.9, 100)
+    msleep(200)
+    mpp.rotate(-87, 60) #-89
+    msleep(200)
+    mpp.drive_speed(-25.5, 100)  # 26.5
+    u.move_servo(c.servoPipeWheel, c.pipeStraight, 20)
+    u.move_servo(c.servoDateWheel, c.wheelOut, 20)
+    mpp.drive_speed(.7, 80) #was 0.45
+    msleep(100)
+    mpp.rotate(92, 80) #95
+    msleep(100)
+    mpp.drive_speed(-7.5, 90)  # 5
+    mpp.drive_speed(3, 90)
+    msleep(100)
+    mpp.rotate(-18, 80)  # was -20
+    msleep(100)
+
+def driveOutStartBoxH2H():
+    #Starts from the start box, drives to first date tree and positions itself to collect
+    print("Drive Out of Start Box")
+    mpp.drive_speed(-1.5, 70)
+    mpp.drive_speed(3.9, 100)
+    msleep(200)
+    mpp.rotate(-89, 60) #-89
+    msleep(200)
+    mpp.drive_speed(-25.5, 100)  # 26.5
+    u.move_servo(c.servoPipeWheel, c.pipeStraight, 20)
+    u.move_servo(c.servoDateWheel, c.wheelOut, 20)
+    mpp.drive_speed(.7, 80) #was 0.45
+    msleep(100)
+    mpp.rotate(92, 80) #95
+    msleep(100)
+    mpp.drive_speed(-7.5, 90)
+    mpp.drive_speed(3, 90)
+    msleep(100)
+    mpp.rotate(-18, 80)  # was -20
+    msleep(100)
 
 def driveUntilTree():
     #Helper function for driveFirstThreeTrees()
@@ -137,10 +139,10 @@ def getSecondDateBin():
 
 def grabFirstPoms():
     print "grabFirstPoms"
-    mpp.drive_speed(5, 85) #2.8
+    mpp.drive_speed(2.8, 85)
     driveUntilTree()
     msleep(100)
-    mpp.drive_speed(-0.2, 80)
+    #mpp.drive_speed(-0.2, 80)
     mpp.pivot_right(6, 80) #8
     u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
     u.move_servo(c.servoDateWheel, c.wheelIn - 100, 10)
@@ -166,7 +168,7 @@ def grabFirstPomsH2H():
     mpp.drive_speed(5, 85) #2.8
     driveUntilTree()
     msleep(100)
-    mpp.drive_speed(-0.2, 80) #was -0.075
+    mpp.drive_speed(-0.1, 80) #was -0.2
     mpp.pivot_right(6, 80) #8
     u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
     u.move_servo(c.servoDateWheel, c.wheelIn - 100, 10)
@@ -211,17 +213,17 @@ def driveToNextTrees():
     u.move_servo(c.servoPipeWheel, 200, 25)
     mpp.rotate(93, 70)
     u.move_servo(c.servoPipeWheel, c.pipeOut, 25)
-    mpp.drive_speed(4, 85) #6
+    mpp.drive_speed(2, 85) #4
     mpp.drive_speed(-1.5, 85) #-3
     u.move_servo(c.servoPipeWheel, 200, 25)
-    mpp.rotate(-88, 85) #-92
+    mpp.rotate(-85, 85) #-92
     mpp.drive_speed(-10.5, 100)
 
 def getThirdDateBin():
     mpp.drive_speed(5.8, 100)
     u.move_servo(c.servoPipeWheel, c.pipeStraight, 25)
-    mpp.rotate(101, 75)#92#99
-    mpp.drive_speed(2, 80) #2.8
+    mpp.rotate(98, 75)#101
+    mpp.drive_speed(1, 80) #2
     u.move_servo(c.servoPipeWheel, 900, 20)
     mpp.drive_timed(-90, -60, 2) #was -85
     tim = seconds()
@@ -248,7 +250,7 @@ def getThirdDateBinH2H():
     mpp.drive_speed(5.8, 100)
     u.move_servo(c.servoPipeWheel, c.pipeStraight, 25)
     mpp.rotate(93, 75) #95
-    mpp.drive_speed(6, 80) #was 8
+    mpp.drive_speed(8, 80) #was 6
     u.move_servo(c.servoPipeWheel, 900, 20)
     mpp.drive_timed(-95, -60, 2) #was -90, -60
     tim = seconds()
