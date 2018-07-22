@@ -45,19 +45,19 @@ def driveOutStartBox():
     mpp.drive_speed(-1.5, 70)
     mpp.drive_speed(3.9, 100)
     msleep(200)
-    mpp.rotate(-87, 60) #-89
+    mpp.rotate(-86, 60) #-87
     msleep(200)
-    mpp.drive_speed(-25.5, 100)  # 26.5
+    mpp.drive_speed(-24, 100)  # 25.5
     u.move_servo(c.servoPipeWheel, c.pipeStraight, 20)
     u.move_servo(c.servoDateWheel, c.wheelOut, 20)
     mpp.drive_speed(.7, 80) #was 0.45
     msleep(100)
-    mpp.rotate(92, 80) #95
+    mpp.rotate(95, 80) #92
     msleep(100)
     mpp.drive_speed(-7.5, 90)  # 5
     mpp.drive_speed(3, 90)
     msleep(100)
-    mpp.rotate(-18, 80)  # was -20
+    mpp.rotate(-15, 80)  # was -18
     msleep(100)
 
 def driveOutStartBoxH2H():
@@ -168,8 +168,12 @@ def grabFirstPomsH2H():
     mpp.drive_speed(5, 85) #2.8
     driveUntilTree()
     msleep(100)
-    mpp.drive_speed(-0.1, 80) #was -0.2
-    mpp.pivot_right(6, 80) #8
+    # mpp.drive_speed(-0.1, 80) #was -0.2
+    # mpp.pivot_right(6, 80) #8
+    mpp.drive_speed(0.2, 60)  # was 0.4
+    mpp.pivot_right(-4, 80)
+    mpp.drive_speed(-0.5, 80)
+    mpp.pivot_right(6, 80)
     u.move_servo(c.servoDateWheel, c.wheelIn + 100, 30)
     u.move_servo(c.servoDateWheel, c.wheelIn - 100, 10)
     mpp.new_get_poms_timed(100, 5000)
@@ -195,12 +199,12 @@ def driveToNextTrees():
     mpp.drive_speed(-4.2, 80)
     mpp.rotate(-90, 80)
     mpp.drive_speed(-7, 90)
-    mpp.drive_speed(17, 100)  # 14
+    mpp.drive_speed(16, 100)  # 17
     msleep(100)
-    mpp.rotate(92, 80) #95
+    mpp.rotate(100, 80) #92
     u.move_servo(c.servoPipeWheel, c.pipeOut, 40)
     u.smoothLineFollowLeftCondition(85)
-    u.smoothLineFollowLeft(3.3, 85)
+    u.smoothLineFollowLeft(3, 85) #3.3
     if analog(c.RIGHT_TOPHAT) > c.onBlack:
         while analog(c.RIGHT_TOPHAT) > c.onBlack:
             mpp.rotate(1, 60)
@@ -220,42 +224,15 @@ def driveToNextTrees():
     mpp.drive_speed(-10.5, 100)
 
 def getThirdDateBin():
-    mpp.drive_speed(5.8, 100)
+    mpp.drive_speed(5.8, 100) #5.8
     u.move_servo(c.servoPipeWheel, c.pipeStraight, 25)
-    mpp.rotate(98, 75)#101
+    mpp.rotate(95, 75)#101
     mpp.drive_speed(1, 80) #2
     u.move_servo(c.servoPipeWheel, 900, 20)
-    mpp.drive_timed(-90, -60, 2) #was -85
+    mpp.drive_timed(-95, -60, 2) #was -85
     tim = seconds()
-    while analog(c.ET) < (c.onTree - 500) and seconds()-tim < 2.8:
-        mpp.drive_timed(-90, -60, .05) #was -85, -60
-    if seconds()-tim > 2.8:
-        print("Fourth tree timeout")
-        mpp.rotate(16, 80)
-        mpp.drive_speed(-.6, 70)
-    mpp.pivot_right(15, 65)
-    u.move_servo(c.servoPipeWheel, c.pipeBin, 25)
-    print "Saw Tree"
-    mpp.pivot_right(6, 75)
-    mpp.drive_speed(1.5, 80)
-    mpp.rotate(-18, 80) #-20
-    mpp.drive_speed(-4.5, 80) #-6.5
-    mpp.pivot_left(-25, 80)
-    msleep(100)
-    mpp.pivot_right(25, 75) #was 18 degrees
-    mpp.new_get_poms_timed(100, 8000) #6000
-    mpp.pivot_right(-3, 60)
-
-def getThirdDateBinH2H():
-    mpp.drive_speed(5.8, 100)
-    u.move_servo(c.servoPipeWheel, c.pipeStraight, 25)
-    mpp.rotate(93, 75) #95
-    mpp.drive_speed(8, 80) #was 6
-    u.move_servo(c.servoPipeWheel, 900, 20)
-    mpp.drive_timed(-95, -60, 2) #was -90, -60
-    tim = seconds()
-    while analog(c.ET) < (c.onTree - 500) and seconds()-tim < 2.8:
-        mpp.drive_timed(-95, -60, .05) #was -90, -60
+    while analog(c.ET) < (c.onTree - 750) and seconds()-tim < 2.8:
+        mpp.drive_timed(-95, 60, .05) #was -85, -60
     if seconds()-tim > 2.8:
         print("Fourth tree timeout")
         mpp.rotate(16, 80)
@@ -265,7 +242,41 @@ def getThirdDateBinH2H():
         print "Saw Tree"
         mpp.pivot_right(6, 75)
         mpp.drive_speed(1.5, 80)
-        mpp.rotate(-15, 80) #-20
+        mpp.rotate(-10, 80) #-20
+    else:
+        mpp.pivot_right(15, 65)
+        u.move_servo(c.servoPipeWheel, c.pipeBin, 25)
+        print "Saw Tree"
+        mpp.pivot_right(6, 75)
+        mpp.drive_speed(1.5, 80)
+        mpp.rotate(-20, 80)  # -18
+    mpp.drive_speed(-4.5, 80) #-6.5
+    mpp.pivot_left(-25, 80)
+    msleep(100)
+    mpp.pivot_right(25, 75) #was 18 degrees
+    mpp.new_get_poms_timed(100, 8000) #6000
+    mpp.pivot_right(-3, 60)
+
+def getThirdDateBinH2H():
+    mpp.drive_speed(5.9, 100)#5.8
+    u.move_servo(c.servoPipeWheel, c.pipeStraight, 25)
+    mpp.rotate(95, 75) #93
+    mpp.drive_speed(10, 80) #was 8
+    u.move_servo(c.servoPipeWheel, 900, 20)
+    mpp.drive_timed(-98, -60, 2) #was -95, -60
+    tim = seconds()
+    while analog(c.ET) < (c.onTree - 750) and seconds()-tim < 2.8:
+        mpp.drive_timed(-98, -60, .05) #was -95, -60
+    if seconds()-tim > 2.8:
+        print("Fourth tree timeout")
+        mpp.rotate(16, 80)
+        mpp.drive_speed(-.6, 70)
+        mpp.pivot_right(15, 65)
+        u.move_servo(c.servoPipeWheel, c.pipeBin, 25)
+        print "Saw Tree"
+        mpp.pivot_right(6, 75)
+        mpp.drive_speed(1.5, 80)
+        mpp.rotate(-10, 80) #-20
     else:
         mpp.pivot_right(15, 65)
         u.move_servo(c.servoPipeWheel, c.pipeBin, 25)

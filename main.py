@@ -19,11 +19,13 @@ def main():
     #Good Luck!
     print ("Running code")
     #Calibration drive
-    # mpp.calibrate_drive()
-    # u.DEBUG()
+    #mpp.calibrate_drive()
+    #u.DEBUG()
+    print "Code Sending"
     act.init()
     if u.wait_for_selection():
         #Seeding
+        u.wait_4_light()
         c.startTime = seconds()
         shut_down_in(119.5)
         print("Running Seeding")
@@ -36,6 +38,7 @@ def main():
         act.driveFinalThreeTrees()
     else:
         #Head 2 Head
+        u.wait_4_light()
         c.startTime = seconds()
         shut_down_in(119.5)
         print("Running Head 2 Head")
